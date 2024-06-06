@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import validator from "validator";
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ProfilePage() {
   let navigate = useNavigate();
@@ -53,7 +54,7 @@ export default function ProfilePage() {
 
   async function fetchUserByEmail() {
     try {
-      const response = await axios.get("/users/getUser", {
+      const response = await axios.get(`${apiUrl}/users/getUser`, {
         params: { email: user.email },
       });
       const responseData = response.data;
@@ -81,7 +82,7 @@ export default function ProfilePage() {
 
     try {
       setIsLoading(true);
-      await axios.post("/users/updateUser", {
+      await axios.post(`${apiUrl}/users/updateUser`, {
         userId: userState._id,
         firstName: userState.firstName,
         lastName: userState.lastName,

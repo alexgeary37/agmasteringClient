@@ -11,11 +11,12 @@ import {
 import soundboard from "../../images/soundboard.png";
 import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
-import axios from "axios";
 import StripeContainer from "./StripeContainer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import tokenHasExpired from "../../hooks/tokenHasExpired";
+import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const foundMeOptions = [
   "website",
@@ -220,7 +221,7 @@ export default function Checkout() {
     try {
       // Make a POST request to your backend with the paymentMethodId
       await axios.post(
-        "/bookings/processPayment",
+        `${apiUrl}/bookings/processPayment`,
         {
           paymentMethodId,
           quote,
@@ -253,7 +254,7 @@ export default function Checkout() {
     try {
       // Make a POST request to your backend to send purchase confirmation emails
       await axios.post(
-        "/bookings/sendBookingEmails",
+        `${apiUrl}/bookings/sendBookingEmails`,
         {
           userEmail: user.email,
           service: paymentService,

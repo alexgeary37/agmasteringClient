@@ -7,12 +7,13 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import SignUpConfirmation from "./SignUpConfirmation";
 import validator from "validator";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
+import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SignUp() {
   const { updateUser } = useContext(UserContext);
@@ -86,7 +87,7 @@ export default function SignUp() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post("/users/signup", {
+      const response = await axios.post(`${apiUrl}/users/signup`, {
         firstName: data.get("firstName").trim(),
         lastName: data.get("lastName").trim(),
         email: data.get("email").trim(),

@@ -6,11 +6,12 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import axios from "axios";
 import PasswordReset from "./PasswordReset";
 import validator from "validator";
 import { useParams } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
+import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ResetPassword() {
   const { userId } = useParams(); // Access the route parameter.
@@ -66,7 +67,7 @@ export default function ResetPassword() {
 
     try {
       setIsLoading(true);
-      await axios.post("/users/resetPassword", {
+      await axios.post(`${apiUrl}/users/resetPassword`, {
         userId,
         newPassword: password,
       });

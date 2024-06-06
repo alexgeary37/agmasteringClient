@@ -4,9 +4,10 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import axios from "axios";
 import ForgotPasswordEmailSent from "./ForgotPasswordEmailSent";
 import { Backdrop, CircularProgress } from "@mui/material";
+import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ForgotPassword() {
   const [emailError, setEmailError] = useState("");
@@ -28,7 +29,7 @@ export default function ForgotPassword() {
 
     try {
       setIsLoading(true);
-      await axios.post("/users/forgotPassword", { email });
+      await axios.post(`${apiUrl}/users/forgotPassword`, { email });
       setTimeout(() => setEmailSent(true), 1000);
     } catch (error) {
       console.error("Error on forgotPassword:", error);

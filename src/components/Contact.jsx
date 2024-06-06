@@ -7,9 +7,10 @@ import Box from "@mui/material/Box";
 import { Backdrop, CircularProgress, Typography } from "@mui/material";
 import soundboard from "../images/soundboard.png";
 import validator from "validator";
-import axios from "axios";
 import ContactConfirmation from "./contactForm/ContactConfirmation";
 import ContactFailed from "./contactForm/ContactFailed";
+import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function Contact() {
   const [nameError, setNameError] = useState("");
@@ -54,7 +55,7 @@ export default function Contact() {
 
     try {
       setIsLoading(true);
-      await axios.post("/contacts/contact", {
+      await axios.post(`${apiUrl}/contacts/contact`, {
         name: data.get("name").trim(),
         email: data.get("email").trim(),
         message: data.get("message").trim(),

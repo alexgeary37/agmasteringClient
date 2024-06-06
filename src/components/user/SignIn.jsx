@@ -9,10 +9,11 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
+import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SignIn() {
   const { updateUser } = useContext(UserContext);
@@ -48,7 +49,7 @@ export default function SignIn() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post("/users/login", {
+      const response = await axios.post(`${apiUrl}/users/login`, {
         email: data.get("email"),
         password: data.get("password"),
       });
