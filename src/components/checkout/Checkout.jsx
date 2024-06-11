@@ -15,7 +15,7 @@ import StripeContainer from "./StripeContainer";
 import { useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import tokenHasExpired from "../../hooks/tokenHasExpired";
-import axios from "axios";
+// import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const foundMeOptions = [
@@ -220,19 +220,19 @@ export default function Checkout() {
 
     try {
       // Make a POST request to your backend with the paymentMethodId
-      await axios.post(
-        `${apiUrl}/bookings/processPayment`,
-        {
-          paymentMethodId,
-          quote,
-          service: paymentService,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      // await axios.post(
+      //   `${apiUrl}/bookings/processPayment`,
+      //   {
+      //     paymentMethodId,
+      //     quote,
+      //     service: paymentService,
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${user.token}`,
+      //     },
+      //   }
+      // );
       // Handle the response from the backend
       // console.log("Payment processed successfully:");
     } catch (error) {
@@ -253,19 +253,19 @@ export default function Checkout() {
         : "Mix & Master";
     try {
       // Make a POST request to your backend to send purchase confirmation emails
-      await axios.post(
-        `${apiUrl}/bookings/sendBookingEmails`,
-        {
-          userEmail: user.email,
-          service: paymentService,
-          formData,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        }
-      );
+      // await axios.post(
+      //   `${apiUrl}/bookings/sendBookingEmails`,
+      //   {
+      //     userEmail: user.email,
+      //     service: paymentService,
+      //     formData,
+      //   },
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${user.token}`,
+      //     },
+      //   }
+      // );
       // Handle the response from the backend
       // console.log("Emails sent successfully:");
     } catch (error) {

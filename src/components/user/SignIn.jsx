@@ -12,7 +12,7 @@ import Container from "@mui/material/Container";
 import { Link, useNavigate } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
-import axios from "axios";
+// import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SignIn() {
@@ -49,13 +49,13 @@ export default function SignIn() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post(`${apiUrl}/users/login`, {
-        email: data.get("email"),
-        password: data.get("password"),
-      });
-      localStorage.setItem("user", JSON.stringify(response.data)); // Store token in local storage
-      updateUser(response.data);
-      setTimeout(handleNavigation, 1000);
+      // const response = await axios.post(`${apiUrl}/users/login`, {
+      //   email: data.get("email"),
+      //   password: data.get("password"),
+      // });
+      // localStorage.setItem("user", JSON.stringify(response.data)); // Store token in local storage
+      // updateUser(response.data);
+      // setTimeout(handleNavigation, 1000);
     } catch (error) {
       console.error("Error on login:", error);
       if (error.response.data.message === `Incorrect email`) {

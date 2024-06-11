@@ -15,7 +15,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import validator from "validator";
-import axios from "axios";
+// import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ProfilePage() {
@@ -43,7 +43,7 @@ export default function ProfilePage() {
   useEffect(() => {
     window.scrollTo(0, 0);
     if (user) {
-      fetchUserByEmail();
+      // fetchUserByEmail();
     }
     // eslint-disable-next-line
   }, []);
@@ -54,23 +54,23 @@ export default function ProfilePage() {
 
   async function fetchUserByEmail() {
     try {
-      const response = await axios.get(`${apiUrl}/users/getUser`, {
-        params: { email: user.email },
-      });
-      const responseData = response.data;
-      setUserState({
-        _id: responseData._id,
-        firstName: responseData.firstName,
-        lastName: responseData.lastName,
-        email: responseData.email,
-        phone: responseData.phone,
-      });
-      setOrgUserState({
-        firstName: responseData.firstName,
-        lastName: responseData.lastName,
-        email: responseData.email,
-        phone: responseData.phone,
-      });
+      // const response = await axios.get(`${apiUrl}/users/getUser`, {
+      //   params: { email: user.email },
+      // });
+      // const responseData = response.data;
+      // setUserState({
+      //   _id: responseData._id,
+      //   firstName: responseData.firstName,
+      //   lastName: responseData.lastName,
+      //   email: responseData.email,
+      //   phone: responseData.phone,
+      // });
+      // setOrgUserState({
+      //   firstName: responseData.firstName,
+      //   lastName: responseData.lastName,
+      //   email: responseData.email,
+      //   phone: responseData.phone,
+      // });
     } catch (error) {
       console.error("Error fetching user:", error);
     }
@@ -82,26 +82,26 @@ export default function ProfilePage() {
 
     try {
       setIsLoading(true);
-      await axios.post(`${apiUrl}/users/updateUser`, {
-        userId: userState._id,
-        firstName: userState.firstName,
-        lastName: userState.lastName,
-        email: userState.email,
-        phone: userState.phone,
-      });
-      const token = JSON.parse(localStorage.getItem("user")).token;
-      updateUser({
-        email: userState.email,
-        token,
-      });
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ email: userState.email, token })
-      );
-      setTimeout(() => {
-        setOpenUpdateMessage(true);
-        setIsLoading(false);
-      }, 1000);
+      // await axios.post(`${apiUrl}/users/updateUser`, {
+      //   userId: userState._id,
+      //   firstName: userState.firstName,
+      //   lastName: userState.lastName,
+      //   email: userState.email,
+      //   phone: userState.phone,
+      // });
+      // const token = JSON.parse(localStorage.getItem("user")).token;
+      // updateUser({
+      //   email: userState.email,
+      //   token,
+      // });
+      // localStorage.setItem(
+      //   "user",
+      //   JSON.stringify({ email: userState.email, token })
+      // );
+      // setTimeout(() => {
+      //   setOpenUpdateMessage(true);
+      //   setIsLoading(false);
+      // }, 1000);
     } catch (error) {
       console.error("Error on updateUser:", error);
       setIsLoading(false);

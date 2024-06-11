@@ -10,7 +10,7 @@ import PasswordReset from "./PasswordReset";
 import validator from "validator";
 import { useParams } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
-import axios from "axios";
+// import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ResetPassword() {
@@ -67,11 +67,11 @@ export default function ResetPassword() {
 
     try {
       setIsLoading(true);
-      await axios.post(`${apiUrl}/users/resetPassword`, {
-        userId,
-        newPassword: password,
-      });
-      setTimeout(() => setPasswordReset(true), 1000);
+      // await axios.post(`${apiUrl}/users/resetPassword`, {
+      //   userId,
+      //   newPassword: password,
+      // });
+      // setTimeout(() => setPasswordReset(true), 1000);
     } catch (error) {
       console.error("Error on resetPassword:", error);
       if (error.response.data.message === `User doesn't exist`) {

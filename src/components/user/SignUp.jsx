@@ -12,7 +12,7 @@ import SignUpConfirmation from "./SignUpConfirmation";
 import validator from "validator";
 import { Backdrop, CircularProgress } from "@mui/material";
 import { UserContext } from "../../contexts/UserContext";
-import axios from "axios";
+// import axios from "axios";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SignUp() {
@@ -87,16 +87,16 @@ export default function SignUp() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post(`${apiUrl}/users/signup`, {
-        firstName: data.get("firstName").trim(),
-        lastName: data.get("lastName").trim(),
-        email: data.get("email").trim(),
-        phone: phone,
-        password: data.get("password"),
-      });
-      localStorage.setItem("user", JSON.stringify(response.data)); // Store token in local storage
-      updateUser(response.data);
-      setTimeout(() => setShowConfirmation(true), 1000);
+      // const response = await axios.post(`${apiUrl}/users/signup`, {
+      //   firstName: data.get("firstName").trim(),
+      //   lastName: data.get("lastName").trim(),
+      //   email: data.get("email").trim(),
+      //   phone: phone,
+      //   password: data.get("password"),
+      // });
+      // localStorage.setItem("user", JSON.stringify(response.data)); // Store token in local storage
+      // updateUser(response.data);
+      // setTimeout(() => setShowConfirmation(true), 1000);
     } catch (error) {
       console.error("Error on signup:", error);
       if (error.response.data.message === `User already exists`) {
