@@ -12,7 +12,7 @@ import SignIn from "./components/user/SignIn";
 import SignUp from "./components/user/SignUp.jsx";
 import ForgotPassword from "./components/user/ForgotPassword.jsx";
 import ResetPassword from "./components/user/ResetPassword.jsx";
-import UserProfile from "./components/user/UserProfile.jsx";
+// import UserProfile from "./components/user/UserProfile.jsx";
 import { useContext, useEffect } from "react";
 import { UserContext } from "./contexts/UserContext.jsx";
 import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
@@ -49,10 +49,10 @@ export default function App() {
         <Route path={`/forgot-password`} element={<ForgotPassword />} />
         <Route path="/reset-password/:userId" element={<ResetPassword />} />
         <Route path={`/session-expired`} element={<SessionExpired />} />
-        <Route
+        {/* <Route
           path={`/user-profile`}
           element={user ? <UserProfile /> : <Navigate to="/sign-in" />}
-        />
+        /> */}
 
         {/* BOOKING PATHS */}
         <Route

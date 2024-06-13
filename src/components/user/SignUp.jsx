@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -11,12 +11,12 @@ import { Link } from "react-router-dom";
 import SignUpConfirmation from "./SignUpConfirmation";
 import validator from "validator";
 import { Backdrop, CircularProgress } from "@mui/material";
-import { UserContext } from "../../contexts/UserContext";
+// import { UserContext } from "../../contexts/UserContext";
 // import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL;
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SignUp() {
-  const { updateUser } = useContext(UserContext);
+  // const { updateUser } = useContext(UserContext);
 
   const [phone, setPhone] = useState("");
   const [showConfirmation, setShowConfirmation] = useState(false);
@@ -96,7 +96,7 @@ export default function SignUp() {
       // });
       // localStorage.setItem("user", JSON.stringify(response.data)); // Store token in local storage
       // updateUser(response.data);
-      // setTimeout(() => setShowConfirmation(true), 1000);
+      setTimeout(() => setShowConfirmation(true), 1000);
     } catch (error) {
       console.error("Error on signup:", error);
       if (error.response.data.message === `User already exists`) {

@@ -10,7 +10,7 @@ import validator from "validator";
 import ContactConfirmation from "./contactForm/ContactConfirmation";
 import ContactFailed from "./contactForm/ContactFailed";
 // import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL;
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function Contact() {
   const [nameError, setNameError] = useState("");

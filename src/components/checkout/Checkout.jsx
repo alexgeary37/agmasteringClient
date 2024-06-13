@@ -1,4 +1,4 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Stepper,
   Step,
@@ -13,10 +13,10 @@ import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
 import StripeContainer from "./StripeContainer";
 import { useLocation, useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
+// import { UserContext } from "../../contexts/UserContext";
 import tokenHasExpired from "../../hooks/tokenHasExpired";
 // import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL;
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 const foundMeOptions = [
   "website",
@@ -37,7 +37,7 @@ export default function Checkout() {
   const service = useLocation().pathname.substring(17);
   // const isMastering = service !== "mixing";
 
-  const { user, updateUser } = useContext(UserContext);
+  // const { user, updateUser } = useContext(UserContext);
 
   const [activeStep, setActiveStep] = useState(0);
   const [quote, setQuote] = useState(0);
@@ -88,7 +88,7 @@ export default function Checkout() {
   }, []);
 
   const signUserOut = () => {
-    updateUser(null);
+    // updateUser(null);
     navigate("/session-expired");
   };
 
@@ -213,10 +213,10 @@ export default function Checkout() {
   };
 
   const processPayment = async (paymentMethodId) => {
-    const paymentService =
-      service !== "mix&master"
-        ? service.charAt(0).toUpperCase() + service.substring(1)
-        : "Mix & Master";
+    // const paymentService =
+    //   service !== "mix&master"
+    //     ? service.charAt(0).toUpperCase() + service.substring(1)
+    //     : "Mix & Master";
 
     try {
       // Make a POST request to your backend with the paymentMethodId
@@ -247,10 +247,10 @@ export default function Checkout() {
   };
 
   const sendEmails = async () => {
-    const paymentService =
-      service !== "mix&master"
-        ? service.charAt(0).toUpperCase() + service.substring(1)
-        : "Mix & Master";
+    // const paymentService =
+    //   service !== "mix&master"
+    //     ? service.charAt(0).toUpperCase() + service.substring(1)
+    //     : "Mix & Master";
     try {
       // Make a POST request to your backend to send purchase confirmation emails
       // await axios.post(

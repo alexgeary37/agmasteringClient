@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -9,16 +9,16 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
-import { UserContext } from "../../contexts/UserContext";
+// import { UserContext } from "../../contexts/UserContext";
 // import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL;
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function SignIn() {
-  const { updateUser } = useContext(UserContext);
+  // const { updateUser } = useContext(UserContext);
 
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -68,18 +68,18 @@ export default function SignIn() {
     }
   };
 
-  const handleNavigation = () => {
-    const signFrom = localStorage.getItem("signFrom");
-    if (signFrom === "mixing") {
-      navigate("/start-a-project/mixing");
-    } else if (signFrom === "mastering") {
-      navigate("/start-a-project/mastering");
-    } else if (signFrom === "mix&master") {
-      navigate("/start-a-project/mix&master");
-    } else {
-      navigate("/");
-    }
-  };
+  // const handleNavigation = () => {
+  //   const signFrom = localStorage.getItem("signFrom");
+  //   if (signFrom === "mixing") {
+  //     navigate("/start-a-project/mixing");
+  //   } else if (signFrom === "mastering") {
+  //     navigate("/start-a-project/mastering");
+  //   } else if (signFrom === "mix&master") {
+  //     navigate("/start-a-project/mix&master");
+  //   } else {
+  //     navigate("/");
+  //   }
+  // };
 
   return (
     <Container component="main" maxWidth="xs">

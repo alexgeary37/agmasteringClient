@@ -8,13 +8,13 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import PasswordReset from "./PasswordReset";
 import validator from "validator";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { Backdrop, CircularProgress } from "@mui/material";
 // import axios from "axios";
-const apiUrl = process.env.REACT_APP_API_URL;
+// const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function ResetPassword() {
-  const { userId } = useParams(); // Access the route parameter.
+  // const { userId } = useParams(); // Access the route parameter.
   const [repeatPassword, setRepeatPassword] = useState("");
   const [newPasswordError, setNewPasswordError] = useState("");
   const [repeatPasswordError, setRepeatPasswordError] = useState("");
@@ -71,7 +71,7 @@ export default function ResetPassword() {
       //   userId,
       //   newPassword: password,
       // });
-      // setTimeout(() => setPasswordReset(true), 1000);
+      setTimeout(() => setPasswordReset(true), 1000);
     } catch (error) {
       console.error("Error on resetPassword:", error);
       if (error.response.data.message === `User doesn't exist`) {
