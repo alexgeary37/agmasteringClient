@@ -12,9 +12,6 @@ module.exports = async (req, res) => {
         user: process.env.REACT_APP_EMAIL_ADDRESS, // your email address
         pass: process.env.EMAIL_PASS, // your email password
       },
-      tls: {
-        rejectUnauthorized: false, // Accept self-signed certificates
-      },
     });
 
     // Define email options
