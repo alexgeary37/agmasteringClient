@@ -16,6 +16,8 @@ export default function SendEmail() {
     });
 
     const result = await response.json();
+    console.log("response:", response);
+    console.log("result:", result);
     if (response.ok) {
       setStatus("Email sent successfully!");
     } else {
