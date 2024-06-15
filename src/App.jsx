@@ -39,7 +39,7 @@ export default function App() {
         <Route path={`/payment-success`} element={<PaymentSuccess />} />
         {/* <Route
           path={`/payment-failed`}
-          element={user ? <PaymentFailed /> : <Navigate to="/sign-in" />}
+          element={<PaymentFailed />}
         /> */}
         <Route path={`404-error`} element={<Error404 />} />
         <Route path="*" element={<Navigate to="/404-error" />} />

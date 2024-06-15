@@ -5,19 +5,13 @@ import App from "./App.jsx";
 import reportWebVitals from "./reportWebVitals.js";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "./theme.js";
-import { UserProvider } from "./contexts/UserContext.jsx";
-// import { RouteHistoryProvider } from "./contexts/RouteHistoryContext.jsx";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
     <ThemeProvider theme={theme}>
-      <UserProvider>
-        {/* <RouteHistoryProvider> */}
-        <CssBaseline />
-        <App />
-        {/* </RouteHistoryProvider> */}
-      </UserProvider>
+      <CssBaseline />
+      <App />
     </ThemeProvider>
   </BrowserRouter>
 );
