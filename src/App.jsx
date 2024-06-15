@@ -23,7 +23,7 @@ export default function App() {
         <Route path={`/contact`} element={<Contact />} />
 
         {/* BOOKING PATHS */}
-        <Route exact path={`/start-a-project/mixing`} element={<Error404 />}
+        <Route exact path={`/start-a-project/mixing`} element={<Error404 />} />
         <Route
           exact
           path={`/start-a-project/mastering`}
