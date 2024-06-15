@@ -24,7 +24,6 @@ module.exports = async (req, res) => {
 
     // Send the email
     try {
-      //   res.status(201).json({ message: "Start Email send" });
       await transporter.sendMail(mailOptions);
       res.status(200).json({ message: "Email sent successfully!" });
     } catch (error) {
@@ -32,32 +31,6 @@ module.exports = async (req, res) => {
         .status(500)
         .json({ error: "Failed to send email", details: error.message });
     }
-
-    // const transporter = nodemailer.createTransport({
-    //   host: "smtp.gmail.com",
-    //   auth: {
-    //     user: process.env.REACT_APP_EMAIL_ADDRESS,
-    //     pass: process.env.EMAIL_PASS,
-    //   },
-    //   tls: {
-    //     rejectUnauthorized: false, // Accept self-signed certificates
-    //   },
-    // });
-
-    // Email message options
-    // const mailOptions = {
-    //   from: process.env.REACT_APP_EMAIL_ADDRESS, // Sender address
-    //   to: to, // Enquiree email address
-    //   subject: subject, // Subject line
-    //   html: htmlContent,
-    // };
-
-    // try {
-    //   const info = await transporter.sendMail(mailOptions);
-    //   console.log("Email sent:", info.response);
-    // } catch (error) {
-    //   console.error("Error occurred while sending email:", error);
-    // }
   } else {
     res.setHeader("Allow", "POST");
     res.status(405).end("Method Not Allowed");
