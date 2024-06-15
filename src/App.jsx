@@ -8,12 +8,7 @@ import Upload from "./components/Upload";
 import Contact from "./components/Contact.jsx";
 import Checkout from "./components/checkout/Checkout";
 import Error404 from "./components/Error404";
-import SignIn from "./components/user/SignIn";
-import SignUp from "./components/user/SignUp.jsx";
-import ForgotPassword from "./components/user/ForgotPassword.jsx";
-import ResetPassword from "./components/user/ResetPassword.jsx";
 import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
-import SessionExpired from "./components/user/SessionExpired.jsx";
 import SendEmail from "./components/checkout/SendEmail.jsx";
 
 export default function App() {
@@ -26,13 +21,6 @@ export default function App() {
 
         <Route path={`/upload`} element={<Upload />} />
         <Route path={`/contact`} element={<Contact />} />
-
-        {/* USER PATHS */}
-        <Route path={`/sign-in`} element={<SignIn />} />
-        <Route path={`/sign-up`} element={<SignUp />} />
-        <Route path={`/forgot-password`} element={<ForgotPassword />} />
-        <Route path="/reset-password/:userId" element={<ResetPassword />} />
-        <Route path={`/session-expired`} element={<SessionExpired />} />
 
         {/* BOOKING PATHS */}
         <Route exact path={`/start-a-project/mixing`} element={<SendEmail />} />
