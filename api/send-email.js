@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
 
     // Send the email
     try {
+      res.status(201).json({ message: "Start Email send" });
       await transporter.sendMail(mailOptions);
       res.status(200).json({ message: "Email sent successfully!" });
     } catch (error) {
