@@ -13,6 +13,7 @@ import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
 import StripeContainer from "./StripeContainer";
 import { useLocation, useNavigate } from "react-router-dom";
+import validator from "validator";
 
 const foundMeOptions = [
   "website",
@@ -35,7 +36,10 @@ export default function Checkout() {
   const [activeStep, setActiveStep] = useState(0);
   const [quote, setQuote] = useState(0);
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     artistName: "",
+    email: "",
     moreAboutYou: "",
     projectTitle: "",
     projectType: "single",
@@ -49,7 +53,10 @@ export default function Checkout() {
     foundMeOther: "",
   });
   const [formErrors, setFormErrors] = useState({
+    firstName: "",
+    lastName: "",
     artistName: "",
+    email: "",
     moreAboutYou: "",
     projectTitle: "",
     songTitles: "",
@@ -68,7 +75,6 @@ export default function Checkout() {
     } else {
       setQuote(MIX_MASTER_PRICE);
     }
-
     // eslint-disable-next-line
   }, []);
 
@@ -137,15 +143,27 @@ export default function Checkout() {
   };
 
   const validatePersonalInputs = () => {
+    const newFirstName =
+      formData.firstName === "" ? "This is a compulsory field" : "";
+
+    const newLastName =
+      formData.lastName === "" ? "This is a compulsory field" : "";
+
     const newArtistName =
       formData.artistName === "" ? "This is a compulsory field" : "";
+
+    let newEmail = formData.email === "" ? "This is a compulsory field" : "";
+    if (!validator.isEmail(formData.email)) newEmail = "Invalid email";
 
     const newMoreAboutYou =
       formData.moreAboutYou === "" ? "This is a compulsory field" : "";
 
     setFormErrors((prevData) => ({
       ...prevData, // eslint-disable-next-line
+      ["fistName"]: newFirstName, // eslint-disable-next-line
+      ["lastName"]: newLastName, // eslint-disable-next-line
       ["artistName"]: newArtistName, // eslint-disable-next-line
+      ["email"]: newEmail, // eslint-disable-next-line
       ["moreAboutYou"]: newMoreAboutYou,
     }));
     return newArtistName === "" && newMoreAboutYou === "";
@@ -272,7 +290,6 @@ export default function Checkout() {
           <ProjectInfoForm
             formData={formData}
             formErrors={formErrors}
-            // isMastering={isMastering}
             handleChange={handleChange}
             handleBack={handleBack}
             handleNext={handleNext}

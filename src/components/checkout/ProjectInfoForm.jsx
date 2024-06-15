@@ -18,7 +18,6 @@ import {
 export default function ProjectInfoForm({
   formData,
   formErrors,
-  // isMastering,
   handleChange,
   handleBack,
   handleNext,
@@ -97,28 +96,6 @@ export default function ProjectInfoForm({
               helperText={formErrors.songTitles}
             />
           </Grid>
-          {/* {isMastering ? (
-            <Grid item xs={12}>
-              <FormControl fullWidth>
-                <InputLabel>
-                  Which of these is most important to you?
-                </InputLabel>
-                <Select
-                  required
-                  name="masteringFocus"
-                  value={formData.masteringFocus}
-                  label="Which of these is most important to you?"
-                  onChange={handleChange}
-                >
-                  <MenuItem value="balance">Balance</MenuItem>
-                  <MenuItem value="dynamics">Dynamics</MenuItem>
-                  <MenuItem value="loudness">Loudness</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          ) : (
-            <div></div>
-          )} */}
           <Grid item xs={12}>
             <TextField
               required
