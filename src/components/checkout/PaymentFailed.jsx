@@ -1,8 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../contexts/UserContext";
 
 const errorMessages = {
   genericDecline:
@@ -22,14 +21,8 @@ const errorMessages = {
 };
 
 export default function PaymentFailed({ errorCode, declineCode }) {
-  const { user } = useContext(UserContext);
   let navigate = useNavigate();
   const [message, setMessage] = useState("");
-
-  useEffect(() => {
-    if (!user) navigate("/sign-in");
-    // eslint-disable-next-line
-  }, []);
 
   useEffect(() => {
     const setErrorMessage = () => {

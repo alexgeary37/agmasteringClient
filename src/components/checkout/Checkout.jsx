@@ -13,10 +13,6 @@ import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
 import StripeContainer from "./StripeContainer";
 import { useLocation, useNavigate } from "react-router-dom";
-// import { UserContext } from "../../contexts/UserContext";
-import tokenHasExpired from "../../hooks/tokenHasExpired";
-// import axios from "axios";
-// const apiUrl = process.env.REACT_APP_API_URL;
 
 const foundMeOptions = [
   "website",
@@ -35,9 +31,6 @@ const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 export default function Checkout() {
   let navigate = useNavigate();
   const service = useLocation().pathname.substring(17);
-  // const isMastering = service !== "mixing";
-
-  // const { user, updateUser } = useContext(UserContext);
 
   const [activeStep, setActiveStep] = useState(0);
   const [quote, setQuote] = useState(0);
@@ -49,7 +42,6 @@ export default function Checkout() {
     numberSongs: 1,
     alternateMixes: true,
     songTitles: "",
-    // masteringFocus: isMastering ? "balance" : "",
     referenceTrack: "",
     referenceReason: "",
     additionalNotes: "",
@@ -77,20 +69,8 @@ export default function Checkout() {
       setQuote(MIX_MASTER_PRICE);
     }
 
-    const interval = setInterval(() => {
-      if (tokenHasExpired()) {
-        signUserOut();
-      }
-    }, 30000); // Check every minute, adjust interval as needed
-
-    return () => clearInterval(interval); // Cleanup function to clear the interval when component unmounts
     // eslint-disable-next-line
   }, []);
-
-  const signUserOut = () => {
-    // updateUser(null);
-    navigate("/session-expired");
-  };
 
   // useEffect(() => {
   //   console.log(formData);
