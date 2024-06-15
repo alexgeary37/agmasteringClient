@@ -126,18 +126,18 @@ export default function StartAProject() {
               <Button
                 fullWidth
                 variant={tier.buttonVariant}
-                onClick={() => {
-                  if (tier.buttonText === "START MIXING") {
-                    localStorage.setItem("signFrom", "mixing");
-                    navigate("/start-a-project/mixing");
-                  } else if (tier.buttonText === "START MASTERING") {
-                    navigate("/start-a-project/mastering");
-                    localStorage.setItem("signFrom", "mastering");
-                  } else {
-                    navigate("/start-a-project/mix&master");
-                    localStorage.setItem("signFrom", "mix&master");
-                  }
-                }}
+                // onClick={() => {
+                //   if (tier.buttonText === "START MIXING") {
+                //     localStorage.setItem("signFrom", "mixing");
+                //     navigate("/start-a-project/mixing");
+                //   } else if (tier.buttonText === "START MASTERING") {
+                //     navigate("/start-a-project/mastering");
+                //     localStorage.setItem("signFrom", "mastering");
+                //   } else {
+                //     navigate("/start-a-project/mix&master");
+                //     localStorage.setItem("signFrom", "mix&master");
+                //   }
+                // }}
               >
                 {tier.buttonText}
               </Button>

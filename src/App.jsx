@@ -23,20 +23,20 @@ export default function App() {
         <Route path={`/contact`} element={<Contact />} />
 
         {/* BOOKING PATHS */}
-        <Route exact path={`/start-a-project/mixing`} element={<SendEmail />} />
+        <Route exact path={`/start-a-project/mixing`} element={<Error404 />}
         <Route
           exact
           path={`/start-a-project/mastering`}
-          element={<Checkout />}
+          element={<Error404 />}
         />
         <Route
           exact
           path={`/start-a-project/mix&master`}
-          element={<Checkout />}
+          element={<Error404 />}
         />
 
         {/* BOOKING PAYMENT RESULT PATHS */}
-        <Route path={`/payment-success`} element={<PaymentSuccess />} />
+        {/* <Route path={`/payment-success`} element={<PaymentSuccess />} /> */}
         {/* <Route
           path={`/payment-failed`}
           element={<PaymentFailed />}
