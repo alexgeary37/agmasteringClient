@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
     // Create a transporter object using the default SMTP transport
     let transporter = nodemailer.createTransport({
-      service: "gmail", // use your email service
+      host: "smtp.gmail.com",
       auth: {
         user: process.env.REACT_APP_EMAIL_ADDRESS, // your email address
         pass: process.env.EMAIL_PASS, // your email password
