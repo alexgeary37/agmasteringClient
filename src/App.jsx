@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import ResponsiveAppBar from "./components/AppBar.jsx";
 import Footer from "./components/Footer.jsx";
@@ -12,29 +12,11 @@ import SignIn from "./components/user/SignIn";
 import SignUp from "./components/user/SignUp.jsx";
 import ForgotPassword from "./components/user/ForgotPassword.jsx";
 import ResetPassword from "./components/user/ResetPassword.jsx";
-// import UserProfile from "./components/user/UserProfile.jsx";
-import { useContext, useEffect } from "react";
-import { UserContext } from "./contexts/UserContext.jsx";
 import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
-import tokenHasExpired from "./hooks/tokenHasExpired.jsx";
 import SessionExpired from "./components/user/SessionExpired.jsx";
 import SendEmail from "./components/checkout/SendEmail.jsx";
-// import CognitoFormMixing from "./components/checkout/CognitoFormMixing.jsx";
-// import { useHistory } from "./hooks/useRouteHistory.jsx";
 
 export default function App() {
-  const { user, updateUser } = useContext(UserContext);
-  // const { addToHistory } = useHistory();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (tokenHasExpired()) {
-      updateUser(null);
-    }
-    // addToHistory(location.pathname);
-    // eslint-disable-next-line
-  }, [location]);
-
   return (
     <div>
       <ResponsiveAppBar />
@@ -51,27 +33,18 @@ export default function App() {
         <Route path={`/forgot-password`} element={<ForgotPassword />} />
         <Route path="/reset-password/:userId" element={<ResetPassword />} />
         <Route path={`/session-expired`} element={<SessionExpired />} />
-        {/* <Route
-          path={`/user-profile`}
-          element={user ? <UserProfile /> : <Navigate to="/sign-in" />}
-        /> */}
 
         {/* BOOKING PATHS */}
-        <Route
-          exact
-          path={`/start-a-project/mixing`}
-          // element={user ? <Checkout /> : <Navigate to="/sign-in" />}
-          element={<SendEmail />}
-        />
+        <Route exact path={`/start-a-project/mixing`} element={<SendEmail />} />
         <Route
           exact
           path={`/start-a-project/mastering`}
-          element={user ? <Checkout /> : <Navigate to="/sign-in" />}
+          element={<Checkout />}
         />
         <Route
           exact
           path={`/start-a-project/mix&master`}
-          element={user ? <Checkout /> : <Navigate to="/sign-in" />}
+          element={<Checkout />}
         />
 
         {/* BOOKING PAYMENT RESULT PATHS */}
