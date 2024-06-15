@@ -12,6 +12,9 @@ module.exports = async (req, res) => {
         user: process.env.REACT_APP_EMAIL_ADDRESS, // your email address
         pass: process.env.EMAIL_PASS, // your email password
       },
+      tls: {
+        rejectUnauthorized: false, // Accept self-signed certificates
+      },
     });
 
     // Define email options
@@ -24,7 +27,7 @@ module.exports = async (req, res) => {
 
     // Send the email
     try {
-    //   res.status(201).json({ message: "Start Email send" });
+      //   res.status(201).json({ message: "Start Email send" });
       await transporter.sendMail(mailOptions);
       res.status(200).json({ message: "Email sent successfully!" });
     } catch (error) {
