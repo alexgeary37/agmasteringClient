@@ -62,7 +62,6 @@ export default function StartAProject() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    localStorage.removeItem("signFrom");
   }, []);
 
   const optionCards = (
@@ -128,14 +127,11 @@ export default function StartAProject() {
                 variant={tier.buttonVariant}
                 onClick={() => {
                   if (tier.buttonText === "START MIXING") {
-                    localStorage.setItem("signFrom", "mixing");
                     navigate("/start-a-project/mixing");
                   } else if (tier.buttonText === "START MASTERING") {
                     navigate("/start-a-project/mastering");
-                    localStorage.setItem("signFrom", "mastering");
                   } else {
                     navigate("/start-a-project/mix&master");
-                    localStorage.setItem("signFrom", "mix&master");
                   }
                 }}
               >
