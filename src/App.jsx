@@ -18,6 +18,7 @@ import { UserContext } from "./contexts/UserContext.jsx";
 import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
 import tokenHasExpired from "./hooks/tokenHasExpired.jsx";
 import SessionExpired from "./components/user/SessionExpired.jsx";
+import SendEmail from "./components/checkout/SendEmail.jsx";
 // import CognitoFormMixing from "./components/checkout/CognitoFormMixing.jsx";
 // import { useHistory } from "./hooks/useRouteHistory.jsx";
 
@@ -59,7 +60,8 @@ export default function App() {
         <Route
           exact
           path={`/start-a-project/mixing`}
-          element={user ? <Checkout /> : <Navigate to="/sign-in" />}
+          // element={user ? <Checkout /> : <Navigate to="/sign-in" />}
+          element={<SendEmail />}
         />
         <Route
           exact
