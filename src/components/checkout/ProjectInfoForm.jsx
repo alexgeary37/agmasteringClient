@@ -20,7 +20,7 @@ export default function ProjectInfoForm({
   formErrors,
   handleChange,
   handleBack,
-  handleNext,
+  handleSubmit,
 }) {
   return (
     <Fragment>
@@ -245,10 +245,10 @@ export default function ProjectInfoForm({
         <Button
           variant="contained"
           color="primary"
-          onClick={handleNext}
+          onClick={handleSubmit}
           sx={{ mt: 3, ml: 1 }}
         >
-          NEXT
+          CHECKOUT
         </Button>
       </Box>
     </Fragment>

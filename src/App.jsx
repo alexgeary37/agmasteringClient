@@ -9,6 +9,7 @@ import Contact from "./components/Contact.jsx";
 import Checkout from "./components/checkout/Checkout";
 import Error404 from "./components/Error404";
 import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
+import PaymentFailed from "./components/checkout/PaymentFailed.jsx";
 import SendEmail from "./components/checkout/SendEmail.jsx";
 
 export default function App() {
@@ -37,10 +38,7 @@ export default function App() {
 
         {/* BOOKING PAYMENT RESULT PATHS */}
         <Route path={`/payment-success`} element={<PaymentSuccess />} />
-        {/* <Route
-          path={`/payment-failed`}
-          element={<PaymentFailed />}
-        /> */}
+        <Route path={`/payment-failed`} element={<PaymentFailed />} />
         <Route path={`404-error`} element={<Error404 />} />
         <Route path="*" element={<Navigate to="/404-error" />} />
       </Routes>

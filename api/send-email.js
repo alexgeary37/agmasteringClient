@@ -1,5 +1,7 @@
 // api/send-email.js
 const nodemailer = require("nodemailer");
+const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
+const EMAIL_PASS = process.env.EMAIL_PASS;
 
 module.exports = async (req, res) => {
   if (req.method === "POST") {
@@ -9,14 +11,14 @@ module.exports = async (req, res) => {
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       auth: {
-        user: process.env.REACT_APP_EMAIL_ADDRESS, // your email address
-        pass: process.env.EMAIL_PASS, // your email password
+        user: EMAIL_ADDRESS, // your email address
+        pass: EMAIL_PASS, // your email password
       },
     });
 
     // Define email options
     let mailOptions = {
-      from: process.env.REACT_APP_EMAIL_ADDRESS,
+      from: EMAIL_ADDRESS,
       to: to,
       subject: subject,
       text: text,

@@ -1,10 +1,37 @@
-import React from "react";
 import { Box, Button, Container, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function PaymentSuccess() {
   let navigate = useNavigate();
+  const location = useLocation();
+  const [sessionData, setSessionData] = useState(null);
+
+  useEffect(() => {
+    const fetchSessionData = async () => {
+      const params = new URLSearchParams(location.search);
+      const sessionId = params.get("session_id");
+
+      if (sessionId) {
+        const response = await fetch(
+          `/api/retrieve-checkout-session?session_id=${sessionId}`
+        );
+        const session = await response.json();
+        setSessionData(session);
+      }
+    };
+
+    fetchSessionData();
+  }, [location.search]);
+
+  useEffect(() => {
+    console.log("sessionData:", sessionData);
+  }, [sessionData]);
+
+  if (!sessionData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -25,6 +52,7 @@ export default function PaymentSuccess() {
           Your payment has been successfully processed. Please check your inbox
           to see confirmation.
         </Typography>
+        {/* {sessionData && <p>Description: {sessionData.metadata.description}</p>} */}
         <Button
           variant="contained"
           sx={{ mt: 2 }}

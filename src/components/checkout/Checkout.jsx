@@ -11,7 +11,8 @@ import {
 import soundboard from "../../images/soundboard.png";
 import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
-import StripeContainer from "./StripeContainer";
+// import StripeContainer from "./StripeContainer";
+import { loadStripe } from "@stripe/stripe-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import validator from "validator";
 
@@ -28,6 +29,9 @@ const foundMeOptions = [
 const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
 const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
+
+// Load your publishable key from the Stripe Dashboard
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_TEST);
 
 export default function Checkout() {
   let navigate = useNavigate();
@@ -95,18 +99,7 @@ export default function Checkout() {
   }, [formData.numberSongs, formData.alternateMixes]);
 
   const handleNext = () => {
-    switch (activeStep) {
-      case 0:
-        if (!validatePersonalInputs()) return;
-        else break;
-      case 1:
-        if (!validateProjectInputs()) return;
-        else break;
-      case 2:
-        break;
-      default:
-        throw new Error("Unknown step");
-    }
+    if (!validatePersonalInputs()) return;
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -204,72 +197,35 @@ export default function Checkout() {
     );
   };
 
-  const handleSubmit = async (paymentMethodId) => {
-    await processPayment(paymentMethodId);
-    await sendEmails();
-    navigate("/payment-success");
-  };
+  const handleSubmit = async () => {
+    if (!validateProjectInputs()) {
+      return;
+    } else {
+      const stripe = await stripePromise;
 
-  const processPayment = async (paymentMethodId) => {
-    // const paymentService =
-    //   service !== "mix&master"
-    //     ? service.charAt(0).toUpperCase() + service.substring(1)
-    //     : "Mix & Master";
+      // Call your backend to create the Checkout session
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          priceId: "price_1PTG2qJcdCc4Eqz9GxLDslbW", // Replace with your actual price ID
+          description: "This is a test description", // Example description
+        }),
+      });
 
-    try {
-      // Make a POST request to your backend with the paymentMethodId
-      // await axios.post(
-      //   `${apiUrl}/bookings/processPayment`,
-      //   {
-      //     paymentMethodId,
-      //     quote,
-      //     service: paymentService,
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${user.token}`,
-      //     },
-      //   }
-      // );
-      // Handle the response from the backend
-      // console.log("Payment processed successfully:");
-    } catch (error) {
-      console.error("Error processing payment:", error);
+      const session = await response.json();
+      console.log("sessionId:", session);
 
-      // Extract error code and decline code from the error object
-      const errorCode = error.response.data.error.code;
-      const declineCode = error.response.data.error.decline_code;
+      // Redirect to Stripe Checkout
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.id,
+      });
 
-      throw new Error(`${errorCode},${declineCode}`);
-    }
-  };
-
-  const sendEmails = async () => {
-    // const paymentService =
-    //   service !== "mix&master"
-    //     ? service.charAt(0).toUpperCase() + service.substring(1)
-    //     : "Mix & Master";
-    try {
-      // Make a POST request to your backend to send purchase confirmation emails
-      // await axios.post(
-      //   `${apiUrl}/bookings/sendBookingEmails`,
-      //   {
-      //     userEmail: user.email,
-      //     service: paymentService,
-      //     formData,
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${user.token}`,
-      //     },
-      //   }
-      // );
-      // Handle the response from the backend
-      // console.log("Emails sent successfully:");
-    } catch (error) {
-      console.error("Error sending emails:", error);
-      navigate("/payment-failed");
-      throw new Error("sendEmails failed");
+      if (result.error) {
+        console.error(result.error.message);
+      }
     }
   };
 
@@ -292,15 +248,7 @@ export default function Checkout() {
             formErrors={formErrors}
             handleChange={handleChange}
             handleBack={handleBack}
-            handleNext={handleNext}
-          />
-        );
-      case 2:
-        return (
-          <StripeContainer
-            onSubmit={handleSubmit}
-            handleBack={handleBack}
-            handleNext={handleNext}
+            handleSubmit={handleSubmit}
           />
         );
       default:
