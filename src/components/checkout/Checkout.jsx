@@ -7,11 +7,12 @@ import {
   AppBar,
   Container,
   Paper,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import soundboard from "../../images/soundboard.png";
 import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
-// import StripeContainer from "./StripeContainer";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
 import validator from "validator";
@@ -34,10 +35,10 @@ const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_TEST);
 
 export default function Checkout() {
-  // let navigate = useNavigate();
   const service = useLocation().pathname.substring(17);
 
   const [activeStep, setActiveStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [quote, setQuote] = useState(0);
   const [formData, setFormData] = useState({
     firstName: "",
@@ -79,6 +80,9 @@ export default function Checkout() {
     } else {
       setQuote(MIX_MASTER_PRICE);
     }
+    return () => {
+      setIsLoading(false);
+    };
     // eslint-disable-next-line
   }, []);
 
@@ -202,6 +206,7 @@ export default function Checkout() {
       return;
     }
 
+    setIsLoading(true);
     const stripe = await stripePromise;
 
     // Call your backend to create the Checkout session
@@ -292,6 +297,12 @@ export default function Checkout() {
     <Fragment>
       <QuoteDisplay />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={isLoading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <Paper
           variant="outlined"
           sx={{
