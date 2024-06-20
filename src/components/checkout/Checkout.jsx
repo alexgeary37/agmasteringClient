@@ -13,7 +13,7 @@ import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
 // import StripeContainer from "./StripeContainer";
 import { loadStripe } from "@stripe/stripe-js";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import validator from "validator";
 
 const foundMeOptions = [
@@ -34,7 +34,7 @@ const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_TEST);
 
 export default function Checkout() {
-  let navigate = useNavigate();
+  // let navigate = useNavigate();
   const service = useLocation().pathname.substring(17);
 
   const [activeStep, setActiveStep] = useState(0);
@@ -200,32 +200,32 @@ export default function Checkout() {
   const handleSubmit = async () => {
     if (!validateProjectInputs()) {
       return;
-    } else {
-      const stripe = await stripePromise;
+    }
 
-      // Call your backend to create the Checkout session
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          priceId: "price_1PTG2qJcdCc4Eqz9GxLDslbW", // Replace with your actual price ID
-          description: "This is a test description", // Example description
-        }),
-      });
+    const stripe = await stripePromise;
 
-      const session = await response.json();
-      console.log("sessionId:", session);
+    // Call your backend to create the Checkout session
+    const response = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        priceId: "price_1PTG2qJcdCc4Eqz9GxLDslbW", // Replace with your actual price ID
+        description: "This is a test description", // Example description
+        formData,
+      }),
+    });
 
-      // Redirect to Stripe Checkout
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
+    const session = await response.json();
 
-      if (result.error) {
-        console.error(result.error.message);
-      }
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
     }
   };
 

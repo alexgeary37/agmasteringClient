@@ -7,9 +7,8 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const { priceId, description } = req.body;
+  const { priceId, description, formData } = req.body;
 
-//   console.log(process.env.STRIPE_SECRET_KEY);
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -25,6 +24,7 @@ module.exports = async (req, res) => {
       // Pass data through checkout process to retrieve back in app afterwards
       metadata: {
         description: description,
+        formData: JSON.stringify(formData),
       },
     });
 

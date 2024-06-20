@@ -25,10 +25,6 @@ export default function PaymentSuccess() {
     fetchSessionData();
   }, [location.search]);
 
-  useEffect(() => {
-    console.log("sessionData:", sessionData);
-  }, [sessionData]);
-
   if (!sessionData) {
     return <div>Loading...</div>;
   }

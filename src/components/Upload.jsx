@@ -34,7 +34,7 @@ export default function Upload() {
           marginBlock={3}
           paragraph
         >
-          {`Upload a ZIP file of your tracks to me using WeTransfer. Make sure to enter your Project Title as the 'Title', and send to ${REACT_APP_EMAIL_ADDRESS}`}
+          {`Upload a ZIP file of your tracks to me using WeTransfer. Make sure to enter your Project Title as the 'Title', and send to ${WEBSITE_EMAIL_ADDRESS}`}
         </Typography>
         <Typography
           variant="body1"
