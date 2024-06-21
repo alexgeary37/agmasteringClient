@@ -1,4 +1,5 @@
 const stripe = require("stripe")(process.env.STRIPE_SK_TEST);
+const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
 const websiteUrl = process.env.YOUR_DOMAIN;
@@ -11,18 +12,21 @@ module.exports = async (req, res) => {
     const formData = JSON.parse(session.metadata.formData);
     const quote = session.metadata.amount_total;
 
+    const userSubject = "AG Mastering Payment Confirmation";
     const userHTML = getUserEmailHtml(formData, quote);
-    await sendEmail(formData.email, userHTML); // Email to client
+    await sendEmail(formData.email, userSubject, userHTML); // Email to client
 
+    const agMasteringSubject = "AG Mastering New Purchase";
     const agMasteringHTML = getAGMasteringEmailHtml(formData, quote);
-    sendEmail(EMAIL_ADDRESS, agMasteringHTML); // Email to AG Mastering
+    sendEmail(EMAIL_ADDRESS, agMasteringSubject, agMasteringHTML); // Email to AG Mastering
+
     res.status(200).json(session);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const sendEmail = async (email, htmlContent) => {
+const sendEmail = async (email, subject, htmlContent) => {
   // Create a transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -32,6 +36,7 @@ const sendEmail = async (email, htmlContent) => {
     },
   });
 
+  console.log("tryA");
   // Define email options
   const mailOptions = {
     from: EMAIL_ADDRESS,
@@ -40,14 +45,13 @@ const sendEmail = async (email, htmlContent) => {
     html: htmlContent,
   };
 
+  console.log("tryB");
   // Send the email
   try {
     // await transporter.sendMail(mailOptions);
-    // res.status(200).json({ message: "Email sent successfully!" });
+    console.log("Try sendEmail");
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Failed to send email", details: error.message });
+    throw new Error("Failed to send email", error.message);
   }
 };
 
