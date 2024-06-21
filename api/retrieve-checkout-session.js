@@ -99,6 +99,18 @@ const getUserEmailHtml = (formData, quote) => {
                                   <th style="text-align: left; padding: 10px;">Form Submission Details</th>
                               </tr>
                               <tr>
+                                  <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>First name:</strong> ${formData.firstName}</td>
+                              </tr>
+                              <tr>
+                                  <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Last name:</strong> ${formData.lastName}</td>
+                              </tr>
+                              <tr>
+                                  <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Email:</strong> ${formData.email}</td>
+                              </tr>
+                              <tr>
+                                  <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Phone:</strong> ${formData.phone}</td>
+                              </tr>
+                              <tr>
                                   <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Artist name:</strong> ${formData.artistName}</td>
                               </tr>
                               <tr>

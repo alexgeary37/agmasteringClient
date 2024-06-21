@@ -140,30 +140,37 @@ export default function Checkout() {
   };
 
   const validatePersonalInputs = () => {
-    const newFirstName =
+    const newFirstNameError =
       formData.firstName === "" ? "This is a compulsory field" : "";
 
-    const newLastName =
+    const newLastNameError =
       formData.lastName === "" ? "This is a compulsory field" : "";
 
-    const newArtistName =
+    const newArtistNameError =
       formData.artistName === "" ? "This is a compulsory field" : "";
 
-    let newEmail = formData.email === "" ? "This is a compulsory field" : "";
-    if (!validator.isEmail(formData.email)) newEmail = "Invalid email";
+    let newEmailError =
+      formData.email === "" ? "This is a compulsory field" : "";
+    if (!validator.isEmail(formData.email)) newEmailError = "Invalid email";
 
-    const newMoreAboutYou =
+    const newMoreAboutYouError =
       formData.moreAboutYou === "" ? "This is a compulsory field" : "";
 
     setFormErrors((prevData) => ({
       ...prevData, // eslint-disable-next-line
-      ["fistName"]: newFirstName, // eslint-disable-next-line
-      ["lastName"]: newLastName, // eslint-disable-next-line
-      ["artistName"]: newArtistName, // eslint-disable-next-line
-      ["email"]: newEmail, // eslint-disable-next-line
-      ["moreAboutYou"]: newMoreAboutYou,
+      ["fistName"]: newFirstNameError, // eslint-disable-next-line
+      ["lastName"]: newLastNameError, // eslint-disable-next-line
+      ["artistName"]: newArtistNameError, // eslint-disable-next-line
+      ["email"]: newEmailError, // eslint-disable-next-line
+      ["moreAboutYou"]: newMoreAboutYouError,
     }));
-    return newArtistName === "" && newMoreAboutYou === "";
+    return (
+      newFirstNameError === "" &&
+      newLastNameError === "" &&
+      newArtistNameError === "" &&
+      newEmailError === "" &&
+      newMoreAboutYouError === ""
+    );
   };
 
   const validateProjectInputs = () => {
