@@ -7,16 +7,18 @@ import {
   AppBar,
   Container,
   Paper,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
 import soundboard from "../../images/soundboard.png";
 import PersonalInfoForm from "./PersonalInfoForm";
 import ProjectInfoForm from "./ProjectInfoForm";
-import StripeContainer from "./StripeContainer";
-import { useLocation, useNavigate } from "react-router-dom";
-// import { UserContext } from "../../contexts/UserContext";
-import tokenHasExpired from "../../hooks/tokenHasExpired";
-// import axios from "axios";
-// const apiUrl = process.env.REACT_APP_API_URL;
+import { loadStripe } from "@stripe/stripe-js";
+import { useLocation } from "react-router-dom";
+import validator from "validator";
+import { getPrice } from "../../utilities/getPrice";
+import { getDescription } from "../../utilities/getDescription";
+import { getService } from "../../utilities/getService";
 
 const foundMeOptions = [
   "website",
@@ -32,24 +34,26 @@ const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
 const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 
-export default function Checkout() {
-  let navigate = useNavigate();
-  const service = useLocation().pathname.substring(17);
-  // const isMastering = service !== "mixing";
+// Load your publishable key from the Stripe Dashboard
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_TEST);
 
-  // const { user, updateUser } = useContext(UserContext);
+export default function Checkout() {
+  const service = useLocation().pathname.substring(17);
 
   const [activeStep, setActiveStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const [quote, setQuote] = useState(0);
   const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
     artistName: "",
+    email: "",
     moreAboutYou: "",
     projectTitle: "",
     projectType: "single",
     numberSongs: 1,
     alternateMixes: true,
     songTitles: "",
-    // masteringFocus: isMastering ? "balance" : "",
     referenceTrack: "",
     referenceReason: "",
     additionalNotes: "",
@@ -57,7 +61,10 @@ export default function Checkout() {
     foundMeOther: "",
   });
   const [formErrors, setFormErrors] = useState({
+    firstName: "",
+    lastName: "",
     artistName: "",
+    email: "",
     moreAboutYou: "",
     projectTitle: "",
     songTitles: "",
@@ -76,21 +83,11 @@ export default function Checkout() {
     } else {
       setQuote(MIX_MASTER_PRICE);
     }
-
-    const interval = setInterval(() => {
-      if (tokenHasExpired()) {
-        signUserOut();
-      }
-    }, 30000); // Check every minute, adjust interval as needed
-
-    return () => clearInterval(interval); // Cleanup function to clear the interval when component unmounts
+    return () => {
+      setIsLoading(false);
+    };
     // eslint-disable-next-line
   }, []);
-
-  const signUserOut = () => {
-    // updateUser(null);
-    navigate("/session-expired");
-  };
 
   // useEffect(() => {
   //   console.log(formData);
@@ -109,18 +106,7 @@ export default function Checkout() {
   }, [formData.numberSongs, formData.alternateMixes]);
 
   const handleNext = () => {
-    switch (activeStep) {
-      case 0:
-        if (!validatePersonalInputs()) return;
-        else break;
-      case 1:
-        if (!validateProjectInputs()) return;
-        else break;
-      case 2:
-        break;
-      default:
-        throw new Error("Unknown step");
-    }
+    if (!validatePersonalInputs()) return;
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
@@ -157,18 +143,37 @@ export default function Checkout() {
   };
 
   const validatePersonalInputs = () => {
-    const newArtistName =
+    const newFirstNameError =
+      formData.firstName === "" ? "This is a compulsory field" : "";
+
+    const newLastNameError =
+      formData.lastName === "" ? "This is a compulsory field" : "";
+
+    const newArtistNameError =
       formData.artistName === "" ? "This is a compulsory field" : "";
 
-    const newMoreAboutYou =
+    let newEmailError =
+      formData.email === "" ? "This is a compulsory field" : "";
+    if (!validator.isEmail(formData.email)) newEmailError = "Invalid email";
+
+    const newMoreAboutYouError =
       formData.moreAboutYou === "" ? "This is a compulsory field" : "";
 
     setFormErrors((prevData) => ({
       ...prevData, // eslint-disable-next-line
-      ["artistName"]: newArtistName, // eslint-disable-next-line
-      ["moreAboutYou"]: newMoreAboutYou,
+      ["fistName"]: newFirstNameError, // eslint-disable-next-line
+      ["lastName"]: newLastNameError, // eslint-disable-next-line
+      ["artistName"]: newArtistNameError, // eslint-disable-next-line
+      ["email"]: newEmailError, // eslint-disable-next-line
+      ["moreAboutYou"]: newMoreAboutYouError,
     }));
-    return newArtistName === "" && newMoreAboutYou === "";
+    return (
+      newFirstNameError === "" &&
+      newLastNameError === "" &&
+      newArtistNameError === "" &&
+      newEmailError === "" &&
+      newMoreAboutYouError === ""
+    );
   };
 
   const validateProjectInputs = () => {
@@ -206,72 +211,58 @@ export default function Checkout() {
     );
   };
 
-  const handleSubmit = async (paymentMethodId) => {
-    await processPayment(paymentMethodId);
-    await sendEmails();
-    navigate("/payment-success");
-  };
-
-  const processPayment = async (paymentMethodId) => {
-    // const paymentService =
-    //   service !== "mix&master"
-    //     ? service.charAt(0).toUpperCase() + service.substring(1)
-    //     : "Mix & Master";
-
-    try {
-      // Make a POST request to your backend with the paymentMethodId
-      // await axios.post(
-      //   `${apiUrl}/bookings/processPayment`,
-      //   {
-      //     paymentMethodId,
-      //     quote,
-      //     service: paymentService,
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${user.token}`,
-      //     },
-      //   }
-      // );
-      // Handle the response from the backend
-      // console.log("Payment processed successfully:");
-    } catch (error) {
-      console.error("Error processing payment:", error);
-
-      // Extract error code and decline code from the error object
-      const errorCode = error.response.data.error.code;
-      const declineCode = error.response.data.error.decline_code;
-
-      throw new Error(`${errorCode},${declineCode}`);
+  const handleSubmit = async () => {
+    if (!validateProjectInputs()) {
+      return;
     }
-  };
 
-  const sendEmails = async () => {
-    // const paymentService =
-    //   service !== "mix&master"
-    //     ? service.charAt(0).toUpperCase() + service.substring(1)
-    //     : "Mix & Master";
-    try {
-      // Make a POST request to your backend to send purchase confirmation emails
-      // await axios.post(
-      //   `${apiUrl}/bookings/sendBookingEmails`,
-      //   {
-      //     userEmail: user.email,
-      //     service: paymentService,
-      //     formData,
-      //   },
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${user.token}`,
-      //     },
-      //   }
-      // );
-      // Handle the response from the backend
-      // console.log("Emails sent successfully:");
-    } catch (error) {
-      console.error("Error sending emails:", error);
-      navigate("/payment-failed");
-      throw new Error("sendEmails failed");
+    setIsLoading(true);
+    const stripe = await stripePromise;
+    const paymentService = getService(service);
+    const description = getDescription(service);
+    const price = getPrice(service);
+
+    const lineItems = [
+      {
+        name: paymentService,
+        description: description,
+        unit_amount: price, // amount in cents
+        quantity: formData.numberSongs,
+      },
+    ];
+
+    if (formData.alternateMixes) {
+      lineItems.push({
+        name: "Alternate Mixes",
+        description:
+          "Main mix will include 4 alternate mixes: Clean, Instrumental, Acapella, Performance [instrumental plus backing vocals])",
+        unit_amount: 1000, // amount in cents
+        quantity: 1,
+      });
+    }
+
+    // Call your backend to create the Checkout session
+    const response = await fetch("/api/create-checkout-session", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: lineItems,
+        service,
+        formData,
+      }),
+    });
+
+    const session = await response.json();
+
+    // Redirect to Stripe Checkout
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
     }
   };
 
@@ -292,18 +283,9 @@ export default function Checkout() {
           <ProjectInfoForm
             formData={formData}
             formErrors={formErrors}
-            // isMastering={isMastering}
             handleChange={handleChange}
             handleBack={handleBack}
-            handleNext={handleNext}
-          />
-        );
-      case 2:
-        return (
-          <StripeContainer
-            onSubmit={handleSubmit}
-            handleBack={handleBack}
-            handleNext={handleNext}
+            handleSubmit={handleSubmit}
           />
         );
       default:
@@ -347,6 +329,12 @@ export default function Checkout() {
     <Fragment>
       <QuoteDisplay />
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={isLoading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <Paper
           variant="outlined"
           sx={{

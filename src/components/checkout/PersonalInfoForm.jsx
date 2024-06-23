@@ -18,20 +18,60 @@ export default function PersonalInfoForm({
             <TextField
               required
               variant="standard"
+              name="firstName"
+              label="First name"
+              value={formData.firstName}
+              onChange={handleChange}
+              fullWidth
+              autoFocus
+              error={formErrors.firstName !== ""}
+              helperText={formErrors.firstName}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              variant="standard"
+              name="lastName"
+              label="Last name"
+              value={formData.lastName}
+              onChange={handleChange}
+              fullWidth
+              error={formErrors.lastName !== ""}
+              helperText={formErrors.lastName}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              variant="standard"
               name="artistName"
               label="Artist name"
               value={formData.artistName}
               onChange={handleChange}
               fullWidth
-              autoFocus
               error={formErrors.artistName !== ""}
               helperText={formErrors.artistName}
             />
           </Grid>
           <Grid item xs={12}>
             <TextField
-              variant="standard"
               required
+              variant="standard"
+              name="email"
+              label="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              // autoComplete="email"
+              fullWidth
+              error={formErrors.email !== ""}
+              helperText={formErrors.email}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              variant="standard"
               name="moreAboutYou"
               label="Where can I find out more about you?"
               placeholder="Spotify, YouTube or Social Media link..."

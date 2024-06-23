@@ -12,7 +12,6 @@ export default function Home() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    localStorage.removeItem("signFrom");
   }, []);
 
   const header = (

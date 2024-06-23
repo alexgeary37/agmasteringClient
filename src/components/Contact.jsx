@@ -8,9 +8,6 @@ import { Backdrop, CircularProgress, Typography } from "@mui/material";
 import soundboard from "../images/soundboard.png";
 import validator from "validator";
 import ContactConfirmation from "./contactForm/ContactConfirmation";
-import ContactFailed from "./contactForm/ContactFailed";
-// import axios from "axios";
-// const apiUrl = process.env.REACT_APP_API_URL;
 
 export default function Contact() {
   const [nameError, setNameError] = useState("");
@@ -18,11 +15,9 @@ export default function Contact() {
   const [messageError, setMessageError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showResponsePage, setShowResponsePage] = useState(false);
-  const [contactFail, setContactFail] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    localStorage.removeItem("signFrom");
   }, []);
 
   const validateInputs = (data) => {
@@ -53,29 +48,35 @@ export default function Contact() {
     const areValid = validateInputs(data);
     if (!areValid) return;
 
-    try {
-      setIsLoading(true);
-      // await axios.post(`${apiUrl}/contacts/contact`, {
-      //   name: data.get("name").trim(),
-      //   email: data.get("email").trim(),
-      //   message: data.get("message").trim(),
-      // });
-      // setTimeout(() => setShowResponsePage(true), 1000);
-      // setShowResponsePage(true);
-    } catch (error) {
-      console.error("Error on contact:", error, error.response.data);
+    setIsLoading(true);
+    const name = data.get("name").trim();
+    const email = data.get("email").trim();
+    const message = data.get("message").trim();
+
+    const response = await fetch("/api/send-contact-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (response.ok) {
       setShowResponsePage(true);
+    } else {
+      console.error(`Failed to send email: ${result.error}`);
       setIsLoading(false);
-      setContactFail(true);
     }
   };
 
-  const displayConfirmationOrFailure = () => {
-    return contactFail ? <ContactFailed /> : <ContactConfirmation />;
-  };
-
   return showResponsePage ? (
-    displayConfirmationOrFailure()
+    <ContactConfirmation />
   ) : (
     <div>
       <Backdrop
