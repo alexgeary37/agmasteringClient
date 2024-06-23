@@ -9,8 +9,6 @@ module.exports = async (req, res) => {
 
   const { items, service, formData } = req.body;
 
-  console.log("BEFORE");
-
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
@@ -26,6 +24,7 @@ module.exports = async (req, res) => {
         quantity: item.quantity,
       })),
       mode: "payment",
+      customer_email: formData.email,
       success_url: `${process.env.LOCAL_DOMAIN}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.LOCAL_DOMAIN}/payment-failed`,
       // Pass data through checkout process to retrieve back in app afterwards

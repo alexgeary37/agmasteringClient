@@ -6,6 +6,7 @@ const websiteUrl = process.env.LOCAL_DOMAIN;
 const MIX_PRICE = process.env.MIX_PRICE;
 const MASTER_PRICE = process.env.MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.MIX_MASTER_PRICE;
+const themeColor = process.env.THEME_MAIN;
 
 module.exports = async (req, res) => {
   const { session_id } = req.query;
@@ -40,7 +41,6 @@ const sendEmail = async (email, subject, htmlContent) => {
     },
   });
 
-  console.log("tryA");
   // Define email options
   const mailOptions = {
     from: EMAIL_ADDRESS,
@@ -49,11 +49,9 @@ const sendEmail = async (email, subject, htmlContent) => {
     html: htmlContent,
   };
 
-  console.log("tryB");
   // Send the email
   try {
     await transporter.sendMail(mailOptions);
-    console.log("Try sendEmail");
   } catch (error) {
     throw new Error("Failed to send email", error);
   }
@@ -164,7 +162,7 @@ const getUserEmailHtml = (formData, service, quote) => {
       </tr>
       <tr>
           <td style="padding: 20px 0; text-align: center;">
-              <a href="${websiteUrl}" style="background-color: #0FA4AF; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Back to Website</a>
+              <a href="${websiteUrl}" style="background-color: "${themeColor}"; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Back to Website</a>
           </td>
       </tr>
   </table>
@@ -194,11 +192,11 @@ const getAGMasteringEmailHtml = (formData, service, quote) => {
 const getPrice = (service) => {
   switch (service) {
     case "mixing":
-      return 300;
+      return MIX_PRICE;
     case "mastering":
-      return 80;
+      return MASTER_PRICE;
     case "mix&master":
-      return 350;
+      return MIX_MASTER_PRICE;
     default:
       return 0;
   }

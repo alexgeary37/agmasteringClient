@@ -219,7 +219,6 @@ export default function Checkout() {
     setIsLoading(true);
     const stripe = await stripePromise;
     const paymentService = getService(service);
-    console.log(paymentService);
     const description = getDescription(service);
     const price = getPrice(service);
 
@@ -236,7 +235,7 @@ export default function Checkout() {
       lineItems.push({
         name: "Alternate Mixes",
         description:
-          "Main mix includes 4 Alternate mixes including: Clean, Instrumental, Acapella, Performance [instrumental and backing vocals])",
+          "Main mix will include 4 alternate mixes: Clean, Instrumental, Acapella, Performance [instrumental plus backing vocals])",
         unit_amount: 1000, // amount in cents
         quantity: 1,
       });

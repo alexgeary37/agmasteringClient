@@ -12,6 +12,6 @@ export const getPrice = (service) => {
     case "mix&master":
       return MIX_MASTER_PRICE * 100;
     default:
-      return "";
+      return 0;
   }
 };
