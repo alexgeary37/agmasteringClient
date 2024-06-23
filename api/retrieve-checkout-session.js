@@ -2,7 +2,10 @@ const stripe = require("stripe")(process.env.STRIPE_SK_TEST);
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
-const websiteUrl = process.env.YOUR_DOMAIN;
+const websiteUrl = process.env.LOCAL_DOMAIN;
+const MIX_PRICE = process.env.MIX_PRICE;
+const MASTER_PRICE = process.env.MASTER_PRICE;
+const MIX_MASTER_PRICE = process.env.MIX_MASTER_PRICE;
 
 module.exports = async (req, res) => {
   const { session_id } = req.query;
@@ -10,15 +13,16 @@ module.exports = async (req, res) => {
   try {
     const session = await stripe.checkout.sessions.retrieve(session_id);
     const formData = JSON.parse(session.metadata.formData);
-    const quote = session.metadata.amount_total;
+    const service = session.metadata.service;
+    const quote = session.amount_total / 100;
 
     const userSubject = "AG Mastering Payment Confirmation";
-    const userHTML = getUserEmailHtml(formData, quote);
+    const userHTML = getUserEmailHtml(formData, service, quote);
     await sendEmail(formData.email, userSubject, userHTML); // Email to client
 
     const agMasteringSubject = "AG Mastering New Purchase";
-    const agMasteringHTML = getAGMasteringEmailHtml(formData, quote);
-    sendEmail(EMAIL_ADDRESS, agMasteringSubject, agMasteringHTML); // Email to AG Mastering
+    const agMasteringHTML = getAGMasteringEmailHtml(formData, service, quote);
+    await sendEmail(EMAIL_ADDRESS, agMasteringSubject, agMasteringHTML); // Email to AG Mastering
 
     res.status(200).json(session);
   } catch (error) {
@@ -48,14 +52,18 @@ const sendEmail = async (email, subject, htmlContent) => {
   console.log("tryB");
   // Send the email
   try {
-    // await transporter.sendMail(mailOptions);
+    await transporter.sendMail(mailOptions);
     console.log("Try sendEmail");
   } catch (error) {
     throw new Error("Failed to send email", error);
   }
 };
 
-const getUserEmailHtml = (formData, quote) => {
+const getUserEmailHtml = (formData, service, quote) => {
+  const paymentService = getService(service);
+  const servicePrice = getPrice(service);
+  const altMixesPrice = formData.alternateMixes ? 10 : 0;
+
   // Generated with ChatGPT
   return `
     <table role="presentation" align="center" cellpadding="0" cellspacing="0" width="600" style="margin: auto; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 16px;">
@@ -74,8 +82,8 @@ const getUserEmailHtml = (formData, quote) => {
                       <th style="text-align: right; padding: 10px; border: 1px solid #ddd; width: 20%;">&nbsp;</th>
                   </tr>
                   <tr>
-                      <td style="padding: 10px; border: 1px solid #ddd;"><service></td>
-                      <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">$<servicePrice> / song</td>
+                      <td style="padding: 10px; border: 1px solid #ddd;">${paymentService}</td>
+                      <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">$${servicePrice} / song</td>
                   </tr>
                   <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;">Number of songs</td>
@@ -83,7 +91,7 @@ const getUserEmailHtml = (formData, quote) => {
                   </tr>
                   <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;">Alternate mixes</td>
-                      <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">$<altMixesPrice></td>
+                      <td style="padding: 10px; text-align: right; border: 1px solid #ddd;">$${altMixesPrice}</td>
                   </tr>
                   <tr>
                       <td style="padding: 10px; border: 1px solid #ddd;"></td>
@@ -156,22 +164,24 @@ const getUserEmailHtml = (formData, quote) => {
       </tr>
       <tr>
           <td style="padding: 20px 0; text-align: center;">
-              <a href="${websiteUrl}" style="background-color: #14A098; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Back to Website</a>
+              <a href="${websiteUrl}" style="background-color: #0FA4AF; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Back to Website</a>
           </td>
       </tr>
   </table>
     `;
 };
 
-const getAGMasteringEmailHtml = (formData, quote) => {
+const getAGMasteringEmailHtml = (formData, service, quote) => {
+  const paymentService = getService(service);
+
   // Generated with ChatGPT
   return `
       <h1>AG Mastering New Purchase Notification</h1>
-      <p>A new purchase has been made for <service>. Below are the details of the transaction:</p>
+      <p>A new purchase has been made for ${paymentService}. Below are the details of the transaction:</p>
       <ul>
         <li><strong>Client Name:</strong> ${formData.firstName} ${formData.lastName}</li>
         <li><strong>Email:</strong> ${formData.email}</li>
-        <li><strong>Description:</strong><service></li>
+        <li><strong>Description:</strong> ${paymentService}</li>
         <ul>
           <li><strong>Number of Songs:</strong> ${formData.numberSongs}</li>
           <li><strong>Alternate Mixes:</strong> ${formData.alternateMixes}</li>
@@ -179,4 +189,30 @@ const getAGMasteringEmailHtml = (formData, quote) => {
         <li><strong>Total:</strong> $${quote}</li>
       </ul>
     `;
+};
+
+const getPrice = (service) => {
+  switch (service) {
+    case "mixing":
+      return 300;
+    case "mastering":
+      return 80;
+    case "mix&master":
+      return 350;
+    default:
+      return 0;
+  }
+};
+
+const getService = (service) => {
+  switch (service) {
+    case "mixing":
+      return "Mixing";
+    case "mastering":
+      return "Mastering";
+    case "mix&master":
+      return "Mix & Master";
+    default:
+      return "mixing";
+  }
 };

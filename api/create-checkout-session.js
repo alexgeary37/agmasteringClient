@@ -7,23 +7,30 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const { priceId, description, formData } = req.body;
+  const { items, service, formData } = req.body;
+
+  console.log("BEFORE");
 
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
+      line_items: items.map((item) => ({
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: item.name,
+            description: item.description,
+          },
+          unit_amount: item.unit_amount,
         },
-      ],
+        quantity: item.quantity,
+      })),
       mode: "payment",
-      success_url: `${process.env.YOUR_DOMAIN}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.YOUR_DOMAIN}/payment-failed`,
+      success_url: `${process.env.LOCAL_DOMAIN}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.LOCAL_DOMAIN}/payment-failed`,
       // Pass data through checkout process to retrieve back in app afterwards
       metadata: {
-        description: description,
+        service: service,
         formData: JSON.stringify(formData),
       },
     });

@@ -16,6 +16,9 @@ import ProjectInfoForm from "./ProjectInfoForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLocation } from "react-router-dom";
 import validator from "validator";
+import { getPrice } from "../../utilities/getPrice";
+import { getDescription } from "../../utilities/getDescription";
+import { getService } from "../../utilities/getService";
 
 const foundMeOptions = [
   "website",
@@ -215,6 +218,29 @@ export default function Checkout() {
 
     setIsLoading(true);
     const stripe = await stripePromise;
+    const paymentService = getService(service);
+    console.log(paymentService);
+    const description = getDescription(service);
+    const price = getPrice(service);
+
+    const lineItems = [
+      {
+        name: paymentService,
+        description: description,
+        unit_amount: price, // amount in cents
+        quantity: formData.numberSongs,
+      },
+    ];
+
+    if (formData.alternateMixes) {
+      lineItems.push({
+        name: "Alternate Mixes",
+        description:
+          "Main mix includes 4 Alternate mixes including: Clean, Instrumental, Acapella, Performance [instrumental and backing vocals])",
+        unit_amount: 1000, // amount in cents
+        quantity: 1,
+      });
+    }
 
     // Call your backend to create the Checkout session
     const response = await fetch("/api/create-checkout-session", {
@@ -223,8 +249,8 @@ export default function Checkout() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        priceId: "price_1PTG2qJcdCc4Eqz9GxLDslbW", // Replace with your actual price ID
-        description: "This is a test description", // Example description
+        items: lineItems,
+        service,
         formData,
       }),
     });

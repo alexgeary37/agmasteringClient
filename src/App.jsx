@@ -10,7 +10,6 @@ import Checkout from "./components/checkout/Checkout";
 import Error404 from "./components/Error404";
 import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
 import PaymentFailed from "./components/checkout/PaymentFailed.jsx";
-import SendEmail from "./components/checkout/SendEmail.jsx";
 
 export default function App() {
   return (
@@ -24,7 +23,7 @@ export default function App() {
         <Route path={`/contact`} element={<Contact />} />
 
         {/* BOOKING PATHS */}
-        <Route exact path={`/start-a-project/mixing`} element={<SendEmail />} />
+        <Route exact path={`/start-a-project/mixing`} element={<Checkout />} />
         <Route
           exact
           path={`/start-a-project/mastering`}

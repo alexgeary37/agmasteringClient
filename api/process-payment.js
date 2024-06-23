@@ -49,7 +49,7 @@ module.exports = async (req, res) => {
     case "mastering":
       paymentService = "Mastering";
       break;
-    case "mix_master":
+    case "mix&master":
       paymentService = "Mix & Master";
       break;
     default:
