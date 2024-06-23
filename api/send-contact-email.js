@@ -14,7 +14,7 @@ module.exports = async (req, res) => {
     <p>Your message below has been submitted and I will get back to you with a response soon :)</p>
     <p><i>${message}</i></p>
     <a href="${websiteUrl}"
-    style="background-color: "${themeColor}";
+    style="background-color: ${themeColor};
     border: none;
     color: white;
     padding: 15px 32px;
@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
     <p>${name}, with the email, ${email} has messaged you saying:</p>
     <p><i>${message}</i></p>
   `;
+    console.log(userHTML);
 
     await sendEmail(email, subject, userHTML); // Email to client
     await sendEmail(EMAIL_ADDRESS, subject, agMasteringHTML); // Email to AG Mastering
