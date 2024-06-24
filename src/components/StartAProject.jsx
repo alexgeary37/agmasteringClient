@@ -24,7 +24,6 @@ const tiers = [
     description: [
       "1 Stereo main mix",
       "4 Alternate versions included",
-      // "7 day turnaround",
       "1 revision set included",
     ],
     buttonText: "START MIXING",
@@ -37,7 +36,6 @@ const tiers = [
     description: [
       "1 Stereo main master",
       "Alternate versions (+$10)",
-      // "3 day turnaround",
       "2 revision sets included",
     ],
     buttonText: "START MASTERING",
@@ -49,7 +47,6 @@ const tiers = [
     description: [
       "1 Stereo main master",
       "4 Alternate versions (+$10)",
-      // "8 day turnaround",
       "1 revision mix set included",
     ],
     buttonText: "START MIX & MASTER",
@@ -198,10 +195,6 @@ export default function StartAProject() {
             </Typography>
           </ul>
         </Typography>
-        {/* <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; !!!!!!!!!!!!!!!!!!7 day turnaround with the mix completed and
-          received within 7 days (not including the optional revision)
-        </Typography> */}
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
           &#x2022; 1 revision of the main mix and alternate versions
         </Typography>
@@ -226,15 +219,11 @@ export default function StartAProject() {
           &#x2022; A stereo master of the main mix of the song ready for release
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 4 alternate versions of the song are available for an extra
-          $10
+          &#x2022; Alternate mix versions of the song can also be mastered for
+          an extra $10
         </Typography>
-        {/* <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; !!!!!!!!!!!!!!!!!!!!!!!!3 day turnaround with the master
-          completed and received within 3 days (not including any revisions)
-        </Typography> */}
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 2 revisions of the main master and alternate versions
+          &#x2022; 2 revisions of the main master and any alternate versions
         </Typography>
       </ul>
     </Box>
@@ -247,10 +236,20 @@ export default function StartAProject() {
       </Typography>
       <Typography variant="body1" marginBlockEnd={1}>
         ​Mix & Master is the whole package including mixing and mastering. By
-        the end of it you'll receive a final stereo master of the main mix (4
-        alternate mix versions are an optional extra). 1 mix revision is also
-        available.
+        the end of it you'll receive:
       </Typography>
+      <ul>
+        <Typography component="li" variant="body1" mb={1} marginLeft={1}>
+          &#x2022; A stereo master of the main mix of the song ready for release
+        </Typography>
+        <Typography component="li" variant="body1" mb={1} marginLeft={1}>
+          &#x2022; 4 alternate (mix) versions of the song are available for an
+          extra $10
+        </Typography>
+        <Typography component="li" variant="body1" mb={1} marginLeft={1}>
+          &#x2022; 1 revision of the main mix and any alternate versions
+        </Typography>
+      </ul>
     </Box>
   );
 
