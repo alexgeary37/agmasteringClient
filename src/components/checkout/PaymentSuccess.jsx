@@ -1,7 +1,7 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function PaymentSuccess() {
   let navigate = useNavigate();
