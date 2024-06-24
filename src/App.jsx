@@ -27,12 +27,12 @@ export default function App() {
         <Route
           exact
           path={`/start-a-project/mastering`}
-          element={<Error404 />}
+          element={<Checkout />}
         />
         <Route
           exact
           path={`/start-a-project/mix&master`}
-          element={<Error404 />}
+          element={<Checkout />}
         />
 
         {/* BOOKING PAYMENT RESULT PATHS */}
