@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 export default function PaymentSuccess() {
   let navigate = useNavigate();
   const location = useLocation();
-  const [sessionData, setSessionData] = useState(null);
+  // const [sessionData, setSessionData] = useState(null);
 
   useEffect(() => {
     const fetchSessionData = async () => {
@@ -18,16 +18,16 @@ export default function PaymentSuccess() {
           `/api/retrieve-checkout-session?session_id=${sessionId}`
         );
         const session = await response.json();
-        setSessionData(session);
+        // setSessionData(session);
       }
     };
 
     fetchSessionData();
   }, [location.search]);
 
-  if (!sessionData) {
-    return <div>Loading...</div>;
-  }
+  // if (!sessionData) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -48,7 +48,6 @@ export default function PaymentSuccess() {
           Your payment has been successfully processed. Please check your inbox
           to see confirmation.
         </Typography>
-        {/* {sessionData && <p>Description: {sessionData.metadata.description}</p>} */}
         <Button
           variant="contained"
           sx={{ mt: 2 }}
