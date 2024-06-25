@@ -95,12 +95,19 @@ export default function Checkout() {
 
   useEffect(() => {
     let servicePrice = 0;
-    if (service === "mixing") servicePrice = MIX_PRICE;
-    if (service === "mastering") servicePrice = MASTER_PRICE;
-    if (service === "mix&master") servicePrice = MIX_MASTER_PRICE;
-    const newQuote = formData.alternateMixes
-      ? formData.numberSongs * servicePrice + 10
-      : formData.numberSongs * servicePrice;
+    if (service === "mixing") {
+      servicePrice = MIX_PRICE;
+    } else if (service === "mastering") {
+      servicePrice = MASTER_PRICE;
+    } else if (service === "mix&master") {
+      servicePrice = MIX_MASTER_PRICE;
+    }
+
+    // Only if service is mastering or mix&master can $10 be added to price for altmixes
+    const newQuote =
+      service !== "mixing" && formData.alternateMixes
+        ? formData.numberSongs * servicePrice + 10
+        : formData.numberSongs * servicePrice;
     setQuote(newQuote);
     // eslint-disable-next-line
   }, [formData.numberSongs, formData.alternateMixes]);
@@ -235,8 +242,8 @@ export default function Checkout() {
       lineItems.push({
         name: "Alternate Mixes",
         description:
-          "Main mix will include 4 alternate mixes: Clean, Instrumental, Acapella, Performance [instrumental plus backing vocals])",
-        unit_amount: 1000, // amount in cents
+          "Main mix will include 4 alternate mixes: Clean, Instrumental, Acapella, Performance [lead vocals removed])",
+        unit_amount: service === "mixing" ? 0 : 1000, // amount in cents
         quantity: 1,
       });
     }
@@ -281,6 +288,7 @@ export default function Checkout() {
       case 1:
         return (
           <ProjectInfoForm
+            service={service}
             formData={formData}
             formErrors={formErrors}
             handleChange={handleChange}

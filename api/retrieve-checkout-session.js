@@ -114,9 +114,6 @@ const getUserEmailHtml = (formData, service, quote) => {
                                   <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Email:</strong> ${formData.email}</td>
                               </tr>
                               <tr>
-                                  <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Phone:</strong> ${formData.phone}</td>
-                              </tr>
-                              <tr>
                                   <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Artist name:</strong> ${formData.artistName}</td>
                               </tr>
                               <tr>

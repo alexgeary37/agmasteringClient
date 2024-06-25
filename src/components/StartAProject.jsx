@@ -23,7 +23,7 @@ const tiers = [
     price: MIX_PRICE,
     description: [
       "1 Stereo main mix",
-      "4 Alternate versions included",
+      "4 alternate versions included",
       "1 revision set included",
     ],
     buttonText: "START MIXING",
@@ -46,7 +46,7 @@ const tiers = [
     price: MIX_MASTER_PRICE,
     description: [
       "1 Stereo main master",
-      "4 Alternate versions (+$10)",
+      "4 alternate versions (+$10)",
       "1 revision mix set included",
     ],
     buttonText: "START MIX & MASTER",
