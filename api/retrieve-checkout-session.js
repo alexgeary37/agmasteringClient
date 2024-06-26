@@ -60,7 +60,8 @@ const sendEmail = async (email, subject, htmlContent) => {
 const getUserEmailHtml = (formData, service, quote) => {
   const paymentService = getService(service);
   const servicePrice = getPrice(service);
-  const altMixesPrice = formData.alternateMixes ? 10 : 0;
+  const altMixesPrice =
+    service !== "mixing" && formData.alternateMixes ? 10 : 0;
 
   // Generated with ChatGPT
   return `
