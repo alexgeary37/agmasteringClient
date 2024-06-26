@@ -10,50 +10,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
+import { getPriceTiers } from "../../utilities/getPriceTiers";
 
-const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
-const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
-const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
-
-const tiers = [
-  {
-    title: "Mixing",
-    price: MIX_PRICE,
-    description: [
-      "Stereo main mix",
-      "Alternate versions included",
-      // "7 day turnaround",
-      "1 revision set included",
-    ],
-    buttonText: "START MIXING",
-    buttonVariant: "contained",
-  },
-  {
-    title: "Mastering",
-    // subheader: "Most popular",
-    price: MASTER_PRICE,
-    description: [
-      "Stereo master",
-      "Alternate versions (optional)",
-      // "3 day turnaround",
-      "2 revision sets included",
-    ],
-    buttonText: "START MASTERING",
-    buttonVariant: "contained",
-  },
-  {
-    title: "Mix & Master",
-    price: MIX_MASTER_PRICE,
-    description: [
-      "Stereo main master",
-      "Alternate versions included",
-      // "8 day turnaround",
-      "1 mix revision set included",
-    ],
-    buttonText: "START MIX & MASTER",
-    buttonVariant: "contained",
-  },
-];
+const tiers = getPriceTiers();
 
 // const footers = [
 //   {

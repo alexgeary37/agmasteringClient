@@ -60,7 +60,8 @@ const sendEmail = async (email, subject, htmlContent) => {
 const getUserEmailHtml = (formData, service, quote) => {
   const paymentService = getService(service);
   const servicePrice = getPrice(service);
-  const altMixesPrice = formData.alternateMixes ? 10 : 0;
+  const altMixesPrice =
+    service !== "mixing" && formData.alternateMixes ? 10 : 0;
 
   // Generated with ChatGPT
   return `
@@ -112,9 +113,6 @@ const getUserEmailHtml = (formData, service, quote) => {
                               </tr>
                               <tr>
                                   <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Email:</strong> ${formData.email}</td>
-                              </tr>
-                              <tr>
-                                  <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Phone:</strong> ${formData.phone}</td>
                               </tr>
                               <tr>
                                   <td style="padding: 10px; border-top: 1px solid #ddd;"><strong>Artist name:</strong> ${formData.artistName}</td>

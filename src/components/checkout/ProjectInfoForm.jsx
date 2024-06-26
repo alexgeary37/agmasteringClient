@@ -16,6 +16,7 @@ import {
 } from "@mui/material";
 
 export default function ProjectInfoForm({
+  service,
   formData,
   formErrors,
   handleChange,
@@ -75,6 +76,7 @@ export default function ProjectInfoForm({
               control={
                 <Checkbox
                   checked={formData.alternateMixes}
+                  disabled={service === "mixing"}
                   name="alternateMixes"
                   onChange={handleChange}
                 />
