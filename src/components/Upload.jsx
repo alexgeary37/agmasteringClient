@@ -3,7 +3,7 @@ import UploadIcon from "@mui/icons-material/Upload";
 import soundboard from "../images/soundboard.png";
 import { useEffect } from "react";
 
-const WEBSITE_EMAIL_ADDRESS = process.env.REACT_APP_EMAIL_ADDRESS;
+const EMAIL_ADDRESS = process.env.REACT_APP_EMAIL_ADDRESS;
 
 export default function Upload() {
   useEffect(() => window.scrollTo(0, 0), []);
@@ -34,7 +34,7 @@ export default function Upload() {
           marginBlock={3}
           paragraph
         >
-          {`Upload a ZIP file of your tracks to me using WeTransfer. Make sure to enter your Project Title as the 'Title', and send to ${WEBSITE_EMAIL_ADDRESS}`}
+          {`Upload a ZIP file of your tracks to me using WeTransfer. Make sure to enter your Project Title as the 'Title', and send to ${EMAIL_ADDRESS}`}
         </Typography>
         <Typography
           variant="body1"
