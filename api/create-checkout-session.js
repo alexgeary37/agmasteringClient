@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
       mode: "payment",
       customer_email: formData.email,
       success_url: `${process.env.LOCAL_DOMAIN}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.LOCAL_DOMAIN}/payment-failed`,
+      cancel_url: `${process.env.LOCAL_DOMAIN}/start-a-project/${service}`,
       // Pass data through checkout process to retrieve back in app afterwards
       metadata: {
         service: service,
