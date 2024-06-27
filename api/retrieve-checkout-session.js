@@ -2,11 +2,11 @@ const stripe = require("stripe")(process.env.STRIPE_SK_TEST);
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
-const websiteUrl = process.env.LOCAL_DOMAIN;
+const WEBSITE_URL = process.env.LOCAL_DOMAIN;
 const MIX_PRICE = process.env.MIX_PRICE;
 const MASTER_PRICE = process.env.MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.MIX_MASTER_PRICE;
-const themeColor = process.env.THEME_MAIN;
+const THEME_COLOR = process.env.THEME_MAIN;
 
 module.exports = async (req, res) => {
   const { session_id } = req.query;
@@ -160,7 +160,7 @@ const getUserEmailHtml = (formData, service, quote) => {
       </tr>
       <tr>
           <td style="padding: 20px 0; text-align: center;">
-              <a href="${websiteUrl}" style="background-color: ${themeColor}; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Back to Website</a>
+              <a href="${WEBSITE_URL}" style="background-color: ${THEME_COLOR}; border: none; color: white; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px;">Back to Website</a>
           </td>
       </tr>
   </table>

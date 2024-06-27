@@ -1,4 +1,5 @@
 const stripe = require("stripe")(process.env.STRIPE_SK_TEST);
+const WEBSITE_URL = process.env.LOCAL_DOMAIN;
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
@@ -25,8 +26,8 @@ module.exports = async (req, res) => {
       })),
       mode: "payment",
       customer_email: formData.email,
-      success_url: `${process.env.LOCAL_DOMAIN}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.LOCAL_DOMAIN}/start-a-project/${service}`,
+      success_url: `${WEBSITE_URL}/payment-success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${WEBSITE_URL}/start-a-project/${service}`,
       // Pass data through checkout process to retrieve back in app afterwards
       metadata: {
         service: service,
