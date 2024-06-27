@@ -5,9 +5,9 @@ import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 import { Backdrop, CircularProgress, Typography } from "@mui/material";
-import soundboard from "../images/soundboard.png";
+import soundboard from "../../images/soundboard.png";
 import validator from "validator";
-import ContactConfirmation from "./contactForm/ContactConfirmation";
+import ContactConfirmation from "./ContactConfirmation";
 
 export default function Contact() {
   const [nameError, setNameError] = useState("");
