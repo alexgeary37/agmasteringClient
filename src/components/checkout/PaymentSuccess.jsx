@@ -14,10 +14,8 @@ export default function PaymentSuccess() {
       const sessionId = params.get("session_id");
 
       if (sessionId) {
-        const response = await fetch(
-          `/api/retrieve-checkout-session?session_id=${sessionId}`
-        );
-        const session = await response.json();
+        await fetch(`/api/retrieve-checkout-session?session_id=${sessionId}`);
+        // const session = await response.json();
         // setSessionData(session);
       }
     };

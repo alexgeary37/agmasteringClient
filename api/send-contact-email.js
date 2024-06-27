@@ -27,7 +27,6 @@ module.exports = async (req, res) => {
     <p>${name}, with the email, ${email} has messaged you saying:</p>
     <p><i>${message}</i></p>
   `;
-    console.log(userHTML);
 
     await sendEmail(email, subject, userHTML); // Email to client
     await sendEmail(EMAIL_ADDRESS, subject, agMasteringHTML); // Email to AG Mastering
