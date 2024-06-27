@@ -320,6 +320,7 @@ export default function AudioPlayer() {
                 <SkipPrevious fontSize="large" sx={{ color: "white" }} />
               </IconButton> */}
               <IconButton
+                disabled={duration === 0}
                 aria-label={paused ? "play" : "pause"}
                 onClick={() => (paused ? play(null) : pause())}
               >
