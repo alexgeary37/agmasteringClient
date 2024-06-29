@@ -1,5 +1,5 @@
 const stripe = require("stripe")(process.env.STRIPE_SK_LIVE);
-const WEBSITE_URL = process.env.LOCAL_DOMAIN;
+const WEBSITE_URL = process.env.LIVE_DOMAIN;
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {
