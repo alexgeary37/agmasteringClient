@@ -14,36 +14,6 @@ import { getPriceTiers } from "../../utilities/getPriceTiers";
 
 const tiers = getPriceTiers();
 
-// const footers = [
-//   {
-//     title: "Company",
-//     description: ["Team", "History", "Contact us", "Locations"],
-//   },
-//   {
-//     title: "Features",
-//     description: [
-//       "Cool stuff",
-//       "Random feature",
-//       "Team feature",
-//       "Developer stuff",
-//       "Another one",
-//     ],
-//   },
-//   {
-//     title: "Resources",
-//     description: [
-//       "Resource",
-//       "Resource name",
-//       "Another resource",
-//       "Final resource",
-//     ],
-//   },
-//   {
-//     title: "Legal",
-//     description: ["Privacy policy", "Terms of use"],
-//   },
-// ];
-
 export default function Pricing() {
   let navigate = useNavigate();
 
@@ -82,13 +52,7 @@ export default function Pricing() {
         <Grid container spacing={5} alignItems="flex-end" mb={8}>
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid
-              item
-              key={tier.title}
-              xs={12}
-              sm={tier.title === "Enterprise" ? 12 : 6}
-              md={4}
-            >
+            <Grid item key={tier.title} xs={12} sm={6} md={4}>
               <Card>
                 <CardHeader
                   title={tier.title}
@@ -169,38 +133,6 @@ export default function Pricing() {
           <Link to="/start-a-project">here</Link>
         </Typography>
       </Container>
-
-      {/* Footer */}
-      {/* <Container
-        maxWidth="md"
-        component="footer"
-        sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-          mt: 8,
-          py: [3, 6],
-        }}
-      >
-        <Grid container spacing={4} justifyContent="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="text.secondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Copyright sx={{ mt: 5 }} />
-      </Container> */}
-      {/* End footer */}
     </div>
   );
 }
