@@ -35,7 +35,7 @@ const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 
 // Load your publishable key from the Stripe Dashboard
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_TEST);
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_LIVE);
 
 export default function Checkout() {
   const service = useLocation().pathname.substring(17);
