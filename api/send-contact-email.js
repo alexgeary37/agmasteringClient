@@ -2,7 +2,6 @@ const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
 const WEBSITE_URL = process.env.LOCAL_DOMAIN;
-const THEME_COLOR = process.env.THEME_MAIN;
 
 module.exports = async (req, res) => {
   const { name, email, message } = req.body;
@@ -13,15 +12,7 @@ module.exports = async (req, res) => {
     <p>Hi ${name},</p>
     <p>Your message below has been submitted and I will get back to you with a response soon :)</p>
     <p><i>${message}</i></p>
-    <a href="${WEBSITE_URL}"
-    style="background-color: ${THEME_COLOR};
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;">Back to Website</a>
+    <a href="${WEBSITE_URL}">Back to AG Mastering</a>
   `;
     const agMasteringHTML = `
     <p>${name}, with the email, ${email} has messaged you saying:</p>
