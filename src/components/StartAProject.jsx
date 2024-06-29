@@ -27,13 +27,7 @@ export default function StartAProject() {
     <Grid container spacing={5} alignItems="flex-end" mb={8}>
       {tiers.map((tier) => (
         // Enterprise card is full width at sm breakpoint
-        <Grid
-          item
-          key={tier.title}
-          xs={12}
-          sm={tier.title === "Enterprise" ? 12 : 6}
-          md={4}
-        >
+        <Grid item key={tier.title} xs={12} sm={6} md={4}>
           <Card>
             <CardHeader
               title={tier.title}
@@ -158,7 +152,8 @@ export default function StartAProject() {
           </ul>
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 1 revision of the main mix and alternate versions
+          &#x2022; 1 revision of the main mix. The revision will also be applied
+          to the 4 alternate versions
         </Typography>
       </ul>
     </Box>
@@ -185,7 +180,8 @@ export default function StartAProject() {
           an extra $10
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 2 revisions of the main master and any alternate versions
+          &#x2022; 2 revisions of the main master. The revision will also be
+          applied to any alternate versions
         </Typography>
       </ul>
     </Box>
@@ -197,7 +193,7 @@ export default function StartAProject() {
         Mix & Master
       </Typography>
       <Typography variant="body1" marginBlockEnd={1}>
-        ​Mix & Master is the whole package including mixing and mastering. By
+        ​Mix & Master is the complete package including mixing and mastering. By
         the end of it you'll receive:
       </Typography>
       <ul>
@@ -209,7 +205,8 @@ export default function StartAProject() {
           extra $10
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 1 revision of the main mix and any alternate versions
+          &#x2022; 1 mix revision of the main mix. The revision will also be
+          applied to any alternate versions and the corresponding masters
         </Typography>
       </ul>
     </Box>
