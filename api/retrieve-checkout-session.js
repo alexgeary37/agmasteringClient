@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SK_TEST);
+const stripe = require("stripe")(process.env.STRIPE_SK_LIVE);
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;

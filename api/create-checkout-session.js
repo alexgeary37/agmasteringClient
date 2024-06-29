@@ -1,4 +1,4 @@
-const stripe = require("stripe")(process.env.STRIPE_SK_TEST);
+const stripe = require("stripe")(process.env.STRIPE_SK_LIVE);
 const WEBSITE_URL = process.env.LOCAL_DOMAIN;
 
 module.exports = async (req, res) => {
