@@ -1,5 +1,12 @@
-const stripe = require("stripe")(process.env.STRIPE_SK_LIVE);
-const WEBSITE_URL = process.env.LIVE_DOMAIN;
+const STRIPE_SK =
+  process.env.NODE_ENV === "development"
+    ? process.env.STRIPE_SK_TEST
+    : process.env.STRIPE_SK_LIVE;
+const stripe = require("stripe")(STRIPE_SK);
+const WEBSITE_URL =
+  process.env.NODE_ENV === "development"
+    ? process.env.TEST_DOMAIN
+    : process.env.LIVE_DOMAIN;
 
 module.exports = async (req, res) => {
   if (req.method !== "POST") {

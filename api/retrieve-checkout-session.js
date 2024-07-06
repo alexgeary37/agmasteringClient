@@ -1,8 +1,15 @@
-const stripe = require("stripe")(process.env.STRIPE_SK_LIVE);
+const STRIPE_SK =
+  process.env.NODE_ENV === "development"
+    ? process.env.STRIPE_SK_TEST
+    : process.env.STRIPE_SK_LIVE;
+const stripe = require("stripe")(STRIPE_SK);
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.REACT_APP_EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
-const WEBSITE_URL = process.env.LIVE_DOMAIN;
+const WEBSITE_URL =
+  process.env.NODE_ENV === "development"
+    ? process.env.TEST_DOMAIN
+    : process.env.LIVE_DOMAIN;
 const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
 const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;

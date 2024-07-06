@@ -1,7 +1,10 @@
 const nodemailer = require("nodemailer");
 const EMAIL_ADDRESS = process.env.REACT_APP_EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
-const WEBSITE_URL = process.env.LIVE_DOMAIN;
+const WEBSITE_URL =
+  process.env.NODE_ENV === "development"
+    ? process.env.TEST_DOMAIN
+    : process.env.LIVE_DOMAIN;
 
 module.exports = async (req, res) => {
   const { name, email, message } = req.body;
