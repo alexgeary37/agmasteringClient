@@ -33,11 +33,14 @@ const foundMeOptions = [
 const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
 const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
 const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
-console.log(process.env.NODE_ENV === 'development');
-// const STRIPE_PK = process.env.
+
+const STRIPE_PK =
+  process.env.NODE_ENV === "development"
+    ? process.env.REACT_APP_STRIPE_PK_TEST
+    : process.env.REACT_APP_STRIPE_PK_LIVE;
 
 // Load your publishable key from the Stripe Dashboard
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_LIVE);
+const stripePromise = loadStripe(STRIPE_PK);
 
 export default function Checkout() {
   const service = useLocation().pathname.substring(17);
