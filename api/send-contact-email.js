@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
+const EMAIL_ADDRESS = process.env.REACT_APP_EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
 const WEBSITE_URL = process.env.LIVE_DOMAIN;
 

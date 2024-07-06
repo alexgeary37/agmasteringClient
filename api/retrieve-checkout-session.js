@@ -1,11 +1,11 @@
 const stripe = require("stripe")(process.env.STRIPE_SK_LIVE);
 const nodemailer = require("nodemailer");
-const EMAIL_ADDRESS = process.env.EMAIL_ADDRESS;
+const EMAIL_ADDRESS = process.env.REACT_APP_EMAIL_ADDRESS;
 const EMAIL_PASS = process.env.EMAIL_PASS;
 const WEBSITE_URL = process.env.LIVE_DOMAIN;
-const MIX_PRICE = process.env.MIX_PRICE;
-const MASTER_PRICE = process.env.MASTER_PRICE;
-const MIX_MASTER_PRICE = process.env.MIX_MASTER_PRICE;
+const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
+const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
+const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 
 module.exports = async (req, res) => {
   const { session_id } = req.query;
