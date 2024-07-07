@@ -189,8 +189,7 @@ const getAGMasteringEmailHtml = (formData, service, quote) => {
       </tr>
       <tr>
           <td style="padding: 20px 0;">
-              <p>${formData.firstName} ${formData.lastName} has made a purchase.</p>
-              <p>Your payment has been successfully processed. Below are the details of the purchase:</p>
+              <p>${formData.firstName} ${formData.lastName} has made a purchase. Below are the details of the purchase:</p>
               <table width="100%" cellpadding="5" cellspacing="0" style="border: 1px solid #ddd; border-collapse: collapse;">
                   <tr style="background-color: #f7f7f7;">
                       <th style="text-align: left; padding: 10px; border: 1px solid #ddd;">Description</th>
@@ -213,7 +212,7 @@ const getAGMasteringEmailHtml = (formData, service, quote) => {
                       <td style="padding: 10px; padding-top: 20px; text-align: right; border: 1px solid #ddd;"><strong>Total: $${quote}</strong></td>
                   </tr>
               </table>
-              <p>Below are the details of your form submission:</p>
+              <p>Below are the details of the form submission:</p>
               <table role="presentation" align="center" cellpadding="0" cellspacing="0" width="600" style="margin: auto;  border-collapse: collapse; font-family: Arial, sans-serif; font-size: 16px;">
                   <tr>
                       <td style="padding-top: 10px;">
