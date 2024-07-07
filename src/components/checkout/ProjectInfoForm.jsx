@@ -148,9 +148,9 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "website"}
+                      checked={formData.foundMe === "Website"}
                       onChange={handleChange}
-                      name="website"
+                      name="Website"
                     />
                   }
                   label="My website"
@@ -158,9 +158,9 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "instagram"}
+                      checked={formData.foundMe === "Instagram"}
                       onChange={handleChange}
-                      name="instagram"
+                      name="Instagram"
                     />
                   }
                   label="Instagram"
@@ -168,9 +168,9 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "facebook"}
+                      checked={formData.foundMe === "Facebook"}
                       onChange={handleChange}
-                      name="facebook"
+                      name="Facebook"
                     />
                   }
                   label="Facebook"
@@ -178,9 +178,9 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "spotify"}
+                      checked={formData.foundMe === "Spotify"}
                       onChange={handleChange}
-                      name="spotify"
+                      name="Spotify"
                     />
                   }
                   label="Spotify"
@@ -188,9 +188,9 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "referral"}
+                      checked={formData.foundMe === "Referral"}
                       onChange={handleChange}
-                      name="referral"
+                      name="Referral"
                     />
                   }
                   label="Referral"
@@ -198,9 +198,9 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "soundBetter"}
+                      checked={formData.foundMe === "SoundBetter"}
                       onChange={handleChange}
-                      name="soundBetter"
+                      name="SoundBetter"
                     />
                   }
                   label="SoundBetter"
@@ -208,16 +208,16 @@ export default function ProjectInfoForm({
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={formData.foundMe === "other"}
+                      checked={formData.foundMe === "Other"}
                       onChange={handleChange}
-                      name="other"
+                      name="Other"
                     />
                   }
                   label="Other"
                 />
               </FormGroup>
             </FormControl>
-            {formData.foundMe === "other" && (
+            {formData.foundMe === "Other" && (
               <TextField
                 name="foundMeOther"
                 label="How you found me"

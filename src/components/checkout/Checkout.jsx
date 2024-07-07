@@ -21,13 +21,13 @@ import { getDescription } from "../../utilities/getDescription";
 import { getService } from "../../utilities/getService";
 
 const foundMeOptions = [
-  "website",
-  "instagram",
-  "facebook",
-  "spotify",
-  "referral",
-  "soundBetter",
-  "other",
+  "Website",
+  "Instagram",
+  "Facebook",
+  "Spotify",
+  "Referral",
+  "SoundBetter",
+  "Other",
 ];
 
 const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
@@ -200,7 +200,7 @@ export default function Checkout() {
     const newFoundMe =
       formData.foundMe === "" ? "This is a compulsory field" : "";
     const newFoundMeOther =
-      formData.foundMe === "other" && formData.foundMeOther === ""
+      formData.foundMe === "Other" && formData.foundMeOther === ""
         ? "Please fill out this field"
         : "";
     setFormErrors((prevData) => ({
