@@ -40,7 +40,7 @@ export default function Home() {
         paddingBlockEnd={"5vh"}
         color={"white"}
       >
-        MIXING & MASTERING
+        MIXING | MASTERING
       </Typography>
       <Box textAlign={"center"} paddingBlockEnd={"15vh"}>
         <Button
@@ -54,6 +54,23 @@ export default function Home() {
     </Box>
   );
 
+  const about2 = (
+    <Box sx={{ flexGrow: 1, paddingBlock: 6 }}>
+      <Container maxWidth="sm">
+        <Typography variant="h2" align="center" paddingBlockEnd={8}>
+          What I'm About
+        </Typography>
+        <Typography variant="h6" align="center" paddingBlockEnd={6}>
+          Hi, I'm Alex Geary.
+        </Typography>
+        <Typography variant="h6" align="center" paddingBlockEnd={6}>
+          I mix and master music for indie artists so it sounds modern, loud and
+          ready for release.
+        </Typography>
+      </Container>
+    </Box>
+  );
+
   const about = (
     <Box sx={{ flexGrow: 1, paddingBlock: 6 }}>
       <Container maxWidth="md">
@@ -61,11 +78,12 @@ export default function Home() {
           What I'm About
         </Typography>
         <Typography variant="h6" align="center" paddingBlockEnd={6}>
-          My name is Alex Geary. I'm a professionally trained mixing and
-          mastering engineer. Whether you're an artist, band, producer, or a
-          podcaster, my goal is to engineer your audio to bring out its full
-          potential so it's ready for release.
+          I'm Alex Geary. I'm a professionally trained mixing and mastering
+          engineer. Whether you're an artist, band, producer, or a podcaster, my
+          goal is to mix and / or your audio to bring out its full potential so
+          it's ready for release.
         </Typography>
+
         <Divider sx={{ mb: 4 }} />
         <Box
           component="div"
@@ -106,18 +124,14 @@ export default function Home() {
   return (
     <div>
       {header}
+      {about2}
       <AudioPlayer />
-      {about}
+      <Divider />
+      <Testimonials />
       <Divider />
       <Pricing />
-      <Divider sx={{ mt: 10 }} />
-      <Testimonials />
-
-      <Box
-        textAlign={"center"}
-        sx={{ flexGrow: 1, paddingBlock: "15vh" }}
-        boxShadow={4}
-      >
+      <Divider />
+      <Box textAlign={"center"} sx={{ flexGrow: 1, paddingBlock: 10 }}>
         <Container maxWidth="md">
           <Button
             variant="contained"

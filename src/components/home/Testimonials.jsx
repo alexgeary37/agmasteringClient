@@ -35,8 +35,8 @@ export default function Testimonials() {
     <Container
       id="testimonials"
       sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
+        pt: { xs: 4, sm: 6 },
+        pb: { xs: 8, sm: 10 },
         position: "relative",
         display: "flex",
         flexDirection: "column",
