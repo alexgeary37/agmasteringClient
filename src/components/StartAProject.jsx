@@ -13,6 +13,7 @@ import { Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import soundboard from "../images/soundboard.png";
 import { getPriceTiers } from "../utilities/getPriceTiers";
+import { Link } from "react-router-dom";
 
 const tiers = getPriceTiers();
 
@@ -24,77 +25,89 @@ export default function StartAProject() {
   }, []);
 
   const optionCards = (
-    <Grid container spacing={5} alignItems="flex-end" mb={8}>
-      {tiers.map((tier) => (
-        // Enterprise card is full width at sm breakpoint
-        <Grid item key={tier.title} xs={12} sm={6} md={4}>
-          <Card>
-            <CardHeader
-              title={tier.title}
-              subheader={tier.subheader}
-              titleTypographyProps={{ align: "center" }}
-              // action={tier.title === "Pro" ? <StarIcon /> : null}
-              subheaderTypographyProps={{
-                align: "center",
-              }}
-              sx={{
-                backgroundColor: (theme) =>
-                  theme.palette.mode === "light"
-                    ? theme.palette.grey[200]
-                    : theme.palette.grey[700],
-              }}
-            />
-            <CardContent>
-              <Box
+    <div>
+      <Grid container spacing={5} alignItems="flex-end" mb={8}>
+        {tiers.map((tier) => (
+          // Enterprise card is full width at sm breakpoint
+          <Grid item key={tier.title} xs={12} sm={6} md={4}>
+            <Card>
+              <CardHeader
+                title={tier.title}
+                subheader={tier.subheader}
+                titleTypographyProps={{ align: "center" }}
+                // action={tier.title === "Pro" ? <StarIcon /> : null}
+                subheaderTypographyProps={{
+                  align: "center",
+                }}
                 sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "baseline",
-                  mb: 2,
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === "light"
+                      ? theme.palette.grey[200]
+                      : theme.palette.grey[700],
                 }}
-              >
-                <Typography component="h2" variant="h3" color="text.primary">
-                  ${tier.price}
-                </Typography>
-                <Typography variant="h6" color="text.secondary">
-                  /song
-                </Typography>
-              </Box>
-              <ul>
-                {tier.description.map((line) => (
-                  <Typography
-                    component="li"
-                    variant="subtitle1"
-                    align="center"
-                    mb={1}
-                    key={line}
-                  >
-                    &#x2022; {line}
+              />
+              <CardContent>
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "baseline",
+                    mb: 2,
+                  }}
+                >
+                  <Typography component="h2" variant="h3" color="text.primary">
+                    ${tier.price}
                   </Typography>
-                ))}
-              </ul>
-            </CardContent>
-            <CardActions>
-              <Button
-                fullWidth
-                variant={tier.buttonVariant}
-                onClick={() => {
-                  if (tier.buttonText === "START MIXING") {
-                    navigate("/start-a-project/mixing");
-                  } else if (tier.buttonText === "START MASTERING") {
-                    navigate("/start-a-project/mastering");
-                  } else {
-                    navigate("/start-a-project/mix&master");
-                  }
-                }}
-              >
-                {tier.buttonText}
-              </Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
+                  <Typography variant="h6" color="text.secondary">
+                    /song
+                  </Typography>
+                </Box>
+                <ul>
+                  {tier.description.map((line) => (
+                    <Typography
+                      component="li"
+                      variant="subtitle1"
+                      align="center"
+                      mb={1}
+                      key={line}
+                    >
+                      &#x2022; {line}
+                    </Typography>
+                  ))}
+                </ul>
+              </CardContent>
+              <CardActions>
+                <Button
+                  fullWidth
+                  variant={tier.buttonVariant}
+                  onClick={() => {
+                    if (tier.buttonText === "START MIXING") {
+                      navigate("/start-a-project/mixing");
+                    } else if (tier.buttonText === "START MASTERING") {
+                      navigate("/start-a-project/mastering");
+                    } else {
+                      navigate("/start-a-project/mix&master");
+                    }
+                  }}
+                >
+                  {tier.buttonText}
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      <Typography
+        variant="h5"
+        align="center"
+        color="text.secondary"
+        component="p"
+        sx={{ paddingBlockEnd: 6 }}
+      >
+        If you have any questions, please contact me{" "}
+        <Link to="/contact">here</Link>
+      </Typography>
+    </div>
   );
 
   const mixingDescription = (
