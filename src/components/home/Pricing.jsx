@@ -18,7 +18,7 @@ export default function Pricing() {
   let navigate = useNavigate();
 
   return (
-    <div>
+    <Box sx={{paddingBlock: 6}}>
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
@@ -26,7 +26,7 @@ export default function Pricing() {
         disableGutters
         maxWidth="md"
         component="main"
-        sx={{ pt: 8, pb: 6 }}
+        sx={{ pb: 6 }}
       >
         <Typography
           component="h1"
@@ -133,6 +133,6 @@ export default function Pricing() {
           <Link to="/start-a-project">here</Link>
         </Typography>
       </Container>
-    </div>
+    </Box>
   );
 }
