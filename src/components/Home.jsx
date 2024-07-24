@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { Button, Container, Divider, Typography } from "@mui/material";
+import { Avatar, Button, Container, Divider, Typography } from "@mui/material";
 import soundboard from "../images/soundboard.png";
 import AudioPlayer from "./home/AudioPlayer";
 import Pricing from "./home/Pricing";
@@ -55,17 +55,25 @@ export default function Home() {
   );
 
   const about2 = (
-    <Box sx={{ flexGrow: 1, paddingBlock: 6 }}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      paddingBlock={6}
+    >
+      <Avatar
+        alt="Your Name"
+        src="/path/to/your/profile.jpg"
+        sx={{ width: 150, height: 150, marginBottom: 6 }}
+      />
       <Container maxWidth="sm">
-        <Typography variant="h2" align="center" paddingBlockEnd={8}>
-          What I'm About
+        <Typography variant="h6" align="center" paddingBlockEnd={4}>
+          Hi, I'm Alex Geary!
         </Typography>
         <Typography variant="h6" align="center" paddingBlockEnd={6}>
-          Hi, I'm Alex Geary.
-        </Typography>
-        <Typography variant="h6" align="center" paddingBlockEnd={6}>
-          I mix and master music for indie artists so it sounds modern, loud and
-          ready for release.
+          I help indie artists get their music sounding modern, loud and ready
+          for release.
         </Typography>
       </Container>
     </Box>
