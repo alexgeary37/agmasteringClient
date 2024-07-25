@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Avatar, Button, Container, Divider, Typography } from "@mui/material";
 import soundboard from "../images/soundboard.png";
+import profile2 from "../images/profile2.jpeg";
 import AudioPlayer from "./home/AudioPlayer";
 import Pricing from "./home/Pricing";
 import Testimonials from "./home/Testimonials";
@@ -60,11 +61,11 @@ export default function Home() {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      paddingBlock={6}
+      paddingBlock={8}
     >
       <Avatar
-        alt="Your Name"
-        src="/path/to/your/profile.jpg"
+        alt="Alex Geary"
+        src={profile2}
         sx={{ width: 150, height: 150, marginBottom: 6 }}
       />
       <Container maxWidth="sm">
@@ -72,8 +73,7 @@ export default function Home() {
           Hi, I'm Alex Geary!
         </Typography>
         <Typography variant="h6" align="center" paddingBlockEnd={6}>
-          I help indie artists get their music sounding modern, loud and ready
-          for release.
+          I help indie artists get professional, modern mixes ready for release.
         </Typography>
       </Container>
     </Box>
