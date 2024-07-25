@@ -55,7 +55,7 @@ export default function Home() {
     </Box>
   );
 
-  const about2 = (
+  const bio = (
     <Box
       display="flex"
       flexDirection="column"
@@ -79,60 +79,10 @@ export default function Home() {
     </Box>
   );
 
-  // const about = (
-  //   <Box sx={{ flexGrow: 1, paddingBlock: 6 }}>
-  //     <Container maxWidth="md">
-  //       <Typography variant="h2" align="center" paddingBlockEnd={8}>
-  //         What I'm About
-  //       </Typography>
-  //       <Typography variant="h6" align="center" paddingBlockEnd={6}>
-  //         I'm Alex Geary. I'm a professionally trained mixing and mastering
-  //         engineer. Whether you're an artist, band, producer, or a podcaster, my
-  //         goal is to mix and / or your audio to bring out its full potential so
-  //         it's ready for release.
-  //       </Typography>
-
-  //       <Divider sx={{ mb: 4 }} />
-  //       <Box
-  //         component="div"
-  //         sx={{
-  //           display: "grid",
-  //           gap: 1,
-  //           gridTemplateColumns: "repeat(2, 1fr)",
-  //         }}
-  //       >
-  //         <Box paddingX={"2vw"}>
-  //           <Typography gutterBottom variant="h5" align="center">
-  //             MIXING
-  //           </Typography>
-  //           <Typography variant="body1" align="center">
-  //             Mixing processes and shapes the individual elements (instruments,
-  //             percussion, and vocals) in your music. This makes all the parts
-  //             fit together well, providing a balanced, cohesive sound which will
-  //             translate across all sound systems. Mixing is required before
-  //             mastering.
-  //           </Typography>
-  //         </Box>
-  //         <Box paddingX={"2vw"}>
-  //           <Typography gutterBottom variant="h5" align="center">
-  //             MASTERING
-  //           </Typography>
-  //           <Typography variant="body1" align="center">
-  //             ​Mastering follows the mixing phase, enhancing your music with
-  //             final touches to give it the volume, energy and punch it needs to
-  //             be ready for release. Mastering also ensures consistency and flow
-  //             between tracks on larger projects such as EPs and albums.
-  //           </Typography>
-  //         </Box>
-  //       </Box>
-  //     </Container>
-  //   </Box>
-  // );
-
   return (
     <div>
       {header}
-      {about2}
+      {bio}
       <AudioPlayer />
       <Divider />
       <Testimonials />
