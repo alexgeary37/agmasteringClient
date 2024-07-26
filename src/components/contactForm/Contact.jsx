@@ -75,105 +75,115 @@ export default function Contact() {
     }
   };
 
-  return showResponsePage ? (
-    <ContactConfirmation />
-  ) : (
+  return (
     <div>
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={isLoading}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-      <Box
-        sx={{
-          backgroundImage: `url(${soundboard})`,
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-        }}
-      >
-        <Typography
-          variant="h2"
-          align="center"
-          paddingBlockStart={"5vh"}
-          paddingBlockEnd={"5vh"}
-          color={"white"}
-        >
-          GET IN TOUCH
-        </Typography>
-      </Box>
-      <Container component="main" maxWidth="xs">
-        <Box
-          sx={{
-            marginBlock: 3,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 3 }}
-          >
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <TextField
-                  autoComplete="name"
-                  name="name"
-                  required
-                  fullWidth
-                  id="name"
-                  label="Name"
-                  autoFocus
-                  error={nameError !== ""}
-                  helperText={nameError}
-                  onChange={() => setNameError("")}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                  error={emailError !== ""}
-                  helperText={emailError}
-                  onChange={() => setEmailError("")}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="message"
-                  label="message"
-                  type="message"
-                  id="message"
-                  autoComplete="message"
-                  multiline
-                  rows={6}
-                  error={messageError !== ""}
-                  helperText={messageError}
-                  onChange={() => setMessageError("")}
-                />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              disabled={isLoading}
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              SUBMIT
-            </Button>
-          </Box>
-        </Box>
-      </Container>
+      <script
+        src="https://www.cognitoforms.com/f/seamless.js"
+        data-key="U4vz2LbkqUSZjRW89TkxTQ"
+        data-form="1"
+      ></script>
     </div>
   );
+
+  // return showResponsePage ? (
+  //   <ContactConfirmation />
+  // ) : (
+  //   <div>
+  //     <Backdrop
+  //       sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+  //       open={isLoading}
+  //     >
+  //       <CircularProgress color="inherit" />
+  //     </Backdrop>
+  //     <Box
+  //       sx={{
+  //         backgroundImage: `url(${soundboard})`,
+  //         backgroundRepeat: "no-repeat",
+  //         backgroundSize: "cover",
+  //       }}
+  //     >
+  //       <Typography
+  //         variant="h2"
+  //         align="center"
+  //         paddingBlockStart={"5vh"}
+  //         paddingBlockEnd={"5vh"}
+  //         color={"white"}
+  //       >
+  //         GET IN TOUCH
+  //       </Typography>
+  //     </Box>
+  //     <Container component="main" maxWidth="xs">
+  //       <Box
+  //         sx={{
+  //           marginBlock: 3,
+  //           display: "flex",
+  //           flexDirection: "column",
+  //           alignItems: "center",
+  //         }}
+  //       >
+  //         <Box
+  //           component="form"
+  //           noValidate
+  //           onSubmit={handleSubmit}
+  //           sx={{ mt: 3 }}
+  //         >
+  //           <Grid container spacing={3}>
+  //             <Grid item xs={12}>
+  //               <TextField
+  //                 autoComplete="name"
+  //                 name="name"
+  //                 required
+  //                 fullWidth
+  //                 id="name"
+  //                 label="Name"
+  //                 autoFocus
+  //                 error={nameError !== ""}
+  //                 helperText={nameError}
+  //                 onChange={() => setNameError("")}
+  //               />
+  //             </Grid>
+  //             <Grid item xs={12}>
+  //               <TextField
+  //                 required
+  //                 fullWidth
+  //                 id="email"
+  //                 label="Email Address"
+  //                 name="email"
+  //                 autoComplete="email"
+  //                 error={emailError !== ""}
+  //                 helperText={emailError}
+  //                 onChange={() => setEmailError("")}
+  //               />
+  //             </Grid>
+  //             <Grid item xs={12}>
+  //               <TextField
+  //                 required
+  //                 fullWidth
+  //                 name="message"
+  //                 label="message"
+  //                 type="message"
+  //                 id="message"
+  //                 autoComplete="message"
+  //                 multiline
+  //                 rows={6}
+  //                 error={messageError !== ""}
+  //                 helperText={messageError}
+  //                 onChange={() => setMessageError("")}
+  //               />
+  //             </Grid>
+  //           </Grid>
+  //           <Button
+  //             type="submit"
+  //             disabled={isLoading}
+  //             fullWidth
+  //             variant="contained"
+  //             sx={{ mt: 3, mb: 2 }}
+  //           >
+  //             SUBMIT
+  //           </Button>
+  //         </Box>
+  //       </Box>
+  //     </Container>
+  //   </div>
+  // );
 }

@@ -18,16 +18,11 @@ export default function Pricing() {
   let navigate = useNavigate();
 
   return (
-    <Box sx={{paddingBlock: 6}}>
+    <Box sx={{ paddingBlock: 6 }}>
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
-      <Container
-        disableGutters
-        maxWidth="md"
-        component="main"
-        sx={{ pb: 6 }}
-      >
+      <Container disableGutters maxWidth="md" component="main" sx={{ pb: 6 }}>
         <Typography
           component="h1"
           variant="h2"
@@ -35,7 +30,7 @@ export default function Pricing() {
           color="text.primary"
           gutterBottom
         >
-          Pricing
+          Services
         </Typography>
         {/* <Typography
           variant="h5"
@@ -69,7 +64,7 @@ export default function Pricing() {
                   }}
                 />
                 <CardContent>
-                  <Box
+                  {/* <Box
                     sx={{
                       display: "flex",
                       justifyContent: "center",
@@ -87,7 +82,7 @@ export default function Pricing() {
                     <Typography variant="h6" color="text.secondary">
                       /song
                     </Typography>
-                  </Box>
+                  </Box> */}
                   <ul>
                     {tier.description.map((line) => (
                       <Typography
@@ -102,7 +97,7 @@ export default function Pricing() {
                     ))}
                   </ul>
                 </CardContent>
-                <CardActions>
+                {/* <CardActions>
                   <Button
                     fullWidth
                     variant={tier.buttonVariant}
@@ -118,7 +113,7 @@ export default function Pricing() {
                   >
                     {tier.buttonText}
                   </Button>
-                </CardActions>
+                </CardActions> */}
               </Card>
             </Grid>
           ))}
@@ -129,8 +124,7 @@ export default function Pricing() {
           color="text.secondary"
           component="p"
         >
-          Find out more about each option{" "}
-          <Link to="/start-a-project">here</Link>
+          Find out more about each option <Link to="/services">here</Link>
         </Typography>
       </Container>
     </Box>

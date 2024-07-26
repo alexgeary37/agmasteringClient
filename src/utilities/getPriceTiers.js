@@ -6,10 +6,10 @@ export const getPriceTiers = () => {
   return [
     {
       title: "Mixing",
-      price: MIX_PRICE,
+      // price: MIX_PRICE,
       description: [
         "1 Stereo main mix",
-        "4 alternate versions included",
+        "Alternate versions included",
         "1 revision set included",
       ],
       buttonText: "START MIXING",
@@ -18,7 +18,7 @@ export const getPriceTiers = () => {
     {
       title: "Mastering",
       // subheader: "Most popular",
-      price: MASTER_PRICE,
+      // price: MASTER_PRICE,
       description: [
         "1 Stereo main master",
         "Alternate versions (+$10)",
@@ -29,10 +29,10 @@ export const getPriceTiers = () => {
     },
     {
       title: "Mix & Master",
-      price: MIX_MASTER_PRICE,
+      // price: MIX_MASTER_PRICE,
       description: [
         "1 Stereo main master",
-        "4 alternate versions (+$10)",
+        "Alternate versions (+$10)",
         "1 revision mix set included",
       ],
       buttonText: "START MIX & MASTER",

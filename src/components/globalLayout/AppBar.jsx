@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["HOME", "START A PROJECT", "CONTACT"];
+const pages = ["HOME", "SERVICES", "CONTACT", "MY MUSIC"];
 
 export default function ResponsiveAppBar() {
   let navigate = useNavigate();
@@ -24,8 +24,9 @@ export default function ResponsiveAppBar() {
 
   const handleCloseNavMenu = (page) => {
     if (page === "HOME") navigate("/");
-    if (page === "START A PROJECT") navigate("/start-a-project");
+    if (page === "SERVICES") navigate("/services");
     if (page === "CONTACT") navigate("/contact");
+    if (page === "MY MUSIC") navigate("/my-music");
     setAnchorElNav(null);
   };
 
@@ -48,7 +49,7 @@ export default function ResponsiveAppBar() {
               textDecoration: "none",
             }}
           >
-            AG MASTERING
+            AGM
           </Typography>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

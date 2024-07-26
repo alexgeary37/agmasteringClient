@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 const tiers = getPriceTiers();
 
-export default function StartAProject() {
+export default function Services() {
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function StartAProject() {
                 }}
               />
               <CardContent>
-                <Box
+                {/* <Box
                   sx={{
                     display: "flex",
                     justifyContent: "center",
@@ -61,7 +61,7 @@ export default function StartAProject() {
                   <Typography variant="h6" color="text.secondary">
                     /song
                   </Typography>
-                </Box>
+                </Box> */}
                 <ul>
                   {tier.description.map((line) => (
                     <Typography
@@ -76,7 +76,7 @@ export default function StartAProject() {
                   ))}
                 </ul>
               </CardContent>
-              <CardActions>
+              {/* <CardActions>
                 <Button
                   fullWidth
                   variant={tier.buttonVariant}
@@ -92,7 +92,7 @@ export default function StartAProject() {
                 >
                   {tier.buttonText}
                 </Button>
-              </CardActions>
+              </CardActions> */}
             </Card>
           </Grid>
         ))}
@@ -128,45 +128,12 @@ export default function StartAProject() {
           mastering
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 4 alternate versions of the song which include:
-          <ul>
-            <Typography
-              component="li"
-              variant="body1"
-              // mb={1}
-              marginLeft={2}
-            >
-              - Clean (explicit lyrics removed)
-            </Typography>
-            <Typography
-              component="li"
-              variant="body1"
-              // mb={1}
-              marginLeft={2}
-            >
-              - Instrumental (all vocals removed)
-            </Typography>
-            <Typography
-              component="li"
-              variant="body1"
-              // mb={1}
-              marginLeft={2}
-            >
-              - Acapella (vocals only)
-            </Typography>
-            <Typography
-              component="li"
-              variant="body1"
-              // mb={1}
-              marginLeft={2}
-            >
-              - Performance (lead vocals removed)
-            </Typography>
-          </ul>
+          &#x2022; Alternate versions of the song which including: Clean
+          (explicit lyrics removed), Instrumental, Acapella etc
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
           &#x2022; 1 revision of the main mix. The revision will also be applied
-          to the 4 alternate versions
+          to alternate versions
         </Typography>
       </ul>
     </Box>
@@ -214,7 +181,7 @@ export default function StartAProject() {
           &#x2022; A stereo master of the main mix of the song ready for release
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
-          &#x2022; 4 alternate (mix) versions of the song are available for an
+          &#x2022; Alternate (mix) versions of the song are available for an
           extra $10
         </Typography>
         <Typography component="li" variant="body1" mb={1} marginLeft={1}>
@@ -246,7 +213,7 @@ export default function StartAProject() {
           paddingBlockEnd={"5vh"}
           color={"white"}
         >
-          START A PROJECT
+          SERVICES
         </Typography>
       </Box>
 
