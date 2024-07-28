@@ -274,7 +274,7 @@ export default function AudioPlayer() {
           paddingBlockEnd={"5vh"}
           color={"white"}
         >
-          Hear The Transformation
+          Hear The Difference
         </Typography>
         <Box>
           <Container maxWidth="sm">

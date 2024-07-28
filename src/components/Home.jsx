@@ -4,9 +4,9 @@ import { Avatar, Button, Container, Divider, Typography } from "@mui/material";
 import soundboard from "../images/soundboard.png";
 import profilePic from "../images/profile2.jpeg";
 import AudioPlayer from "./home/AudioPlayer";
-import Pricing from "./home/Pricing";
 import Testimonials from "./home/Testimonials";
 import { useEffect, useState } from "react";
+import ServicesSection from "./home/ServicesSection";
 
 export default function Home() {
   let navigate = useNavigate();
@@ -55,15 +55,6 @@ export default function Home() {
       <Typography variant="h5" align="center" color={"white"}>
         MIXING | MASTERING
       </Typography>
-      {/* <Box textAlign={"center"} paddingBlockEnd={"15vh"}>
-        <Button
-          variant="contained"
-          size="large"
-          onClick={() => navigate("/start-a-project")}
-        >
-          START A PROJECT
-        </Button>
-      </Box> */}
     </Box>
   );
 
@@ -118,7 +109,7 @@ export default function Home() {
       <Divider />
       <Testimonials />
       <Divider />
-      <Pricing />
+      <ServicesSection />
       <Divider />
       <Box textAlign={"center"} sx={{ flexGrow: 1, paddingBlock: 10 }}>
         <Container maxWidth="md">

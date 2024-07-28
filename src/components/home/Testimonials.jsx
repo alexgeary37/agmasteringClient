@@ -34,6 +34,7 @@ export default function Testimonials() {
   return (
     <Container
       id="testimonials"
+      maxWidth="md"
       sx={{
         pt: { xs: 4, sm: 6 },
         pb: { xs: 8, sm: 10 },
@@ -59,11 +60,6 @@ export default function Testimonials() {
         >
           Testimonials
         </Typography>
-        {/* <Typography variant="body1" color="text.secondary">
-          See what our clients love about our products. Discover how we excel
-          in efficiency, durability, and satisfaction. Join us for quality,
-          innovation, and reliable support.
-        </Typography> */}
       </Box>
       <Masonry columns={columns} spacing={2}>
         {userTestimonials.map((testimonial, index) => (
