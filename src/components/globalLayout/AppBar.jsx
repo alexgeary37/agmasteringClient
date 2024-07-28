@@ -11,7 +11,7 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["HOME", "SERVICES", "CONTACT", "MY MUSIC"];
+const pages = ["HOME", "SERVICES", "CONTACT"];
 
 export default function ResponsiveAppBar() {
   let navigate = useNavigate();
@@ -26,7 +26,7 @@ export default function ResponsiveAppBar() {
     if (page === "HOME") navigate("/");
     if (page === "SERVICES") navigate("/services");
     if (page === "CONTACT") navigate("/contact");
-    if (page === "MY MUSIC") navigate("/my-music");
+    // if (page === "MY MUSIC") navigate("/my-music");
     setAnchorElNav(null);
   };
 

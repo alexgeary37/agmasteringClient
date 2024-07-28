@@ -36,28 +36,23 @@ export default function Home() {
         backgroundImage: `url(${soundboard})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
-        paddingBlockStart: "10vh",
-        paddingBlockEnd: "10vh",
+        paddingBlockStart: isMobile ? "15vh" : "20vh",
+        paddingBlockEnd: isMobile ? "15vh" : "25vh",
       }}
     >
       <Typography
         variant="h2"
         align="center"
-        // paddingBlockStart={"20vh"}
         paddingBlockEnd={"5vh"}
         color={"white"}
         fontFamily={"lastica"}
         fontWeight={1000}
-        letterSpacing="0.3rem"
+        fontSize={"2rem"}
+        letterSpacing={isMobile ? "0.1rem" : "0.3rem"}
       >
         AG MASTERING
       </Typography>
-      <Typography
-        variant="h5"
-        align="center"
-        // paddingBlockEnd={"5vh"}
-        color={"white"}
-      >
+      <Typography variant="h5" align="center" color={"white"}>
         MIXING | MASTERING
       </Typography>
       {/* <Box textAlign={"center"} paddingBlockEnd={"15vh"}>
@@ -83,13 +78,13 @@ export default function Home() {
       <Avatar
         alt="Alex Geary"
         src={profilePic}
-        sx={{ width: 100, height: 100, marginBottom: 6 }}
+        sx={{ width: 100, height: 100, marginBottom: 4 }}
       />
       <Container maxWidth="sm">
-        <Typography variant="h6" align="center" paddingBlockEnd={4}>
+        <Typography variant="h6" align="center" paddingBlockEnd={2}>
           Hi, I'm Alex Geary!
         </Typography>
-        <Typography variant="h6" align="center" paddingBlockEnd={4}>
+        <Typography variant="h6" align="center" paddingBlockEnd={2}>
           I help electronic producers and indie artists get professional, modern
           mixes ready for release.
         </Typography>
@@ -134,6 +129,7 @@ export default function Home() {
           <Button
             variant="contained"
             size="large"
+            sx={{ marginBlockStart: 4 }}
             onClick={() => navigate("/contact")}
           >
             GET IN TOUCH
