@@ -7,35 +7,17 @@ export const getPriceTiers = () => {
     {
       title: "Mixing",
       // price: MIX_PRICE,
-      description: [
-        "1 Stereo main mix",
-        "Alternate versions included",
-        "1 revision set included",
-      ],
+      description:
+        "Individual and combined processing of all the elements of a song to create a cohesive, balanced sound. Alternate versions such as instrumental, acapella, etc are available.",
       buttonText: "START MIXING",
       buttonVariant: "contained",
     },
     {
       title: "Mastering",
-      // subheader: "Most popular",
       // price: MASTER_PRICE,
-      description: [
-        "1 Stereo main master",
-        "Alternate versions (+$10)",
-        "2 revision sets included",
-      ],
+      description:
+        "Processing applied to the final mix to create a fully defined master with optimal loudness to cut an album or release on streaming services. Alternate versions are available and revisions if necessary.",
       buttonText: "START MASTERING",
-      buttonVariant: "contained",
-    },
-    {
-      title: "Mix & Master",
-      // price: MIX_MASTER_PRICE,
-      description: [
-        "1 Stereo main master",
-        "Alternate versions (+$10)",
-        "1 revision mix set included",
-      ],
-      buttonText: "START MIX & MASTER",
       buttonVariant: "contained",
     },
   ];

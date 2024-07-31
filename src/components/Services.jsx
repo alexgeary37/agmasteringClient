@@ -68,12 +68,7 @@ export default function Services() {
         <Divider sx={{ my: 6 }} />
         {sectionDescription(
           "Mixing",
-          "Mixing processes and shapes the individual elements (instruments, percussion, and vocals) in your music. This makes all the parts fit together well, providing a balanced, cohesive sound which will translate across all sound systems. Mixing is required before mastering. Below is what is included in mixing:",
-          [
-            "A stereo mix of the main version of the song ready for mastering",
-            "Alternate versions of the song including: Clean (explicit lyrics removed), Instrumental, Acapella etc.",
-            "1 revision of the main mix. The revision will also be applied to alternate versions",
-          ]
+          "Individual and combined processing of all the elements of a song to create a cohesive, balanced sound. Alternate versions such as instrumental, acapella, etc are available."
         )}
         <Divider sx={{ my: 6 }} />
         {sectionDescription(
