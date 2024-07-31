@@ -5,12 +5,13 @@ import soundboard from "../images/soundboard.png";
 import profilePic from "../images/profile2.jpeg";
 import AudioPlayer from "./home/AudioPlayer";
 import Testimonials from "./home/Testimonials";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ServicesSection from "./home/ServicesSection";
 
 export default function Home() {
   let navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
+  const bottomButtonRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -30,6 +31,12 @@ export default function Home() {
     };
   }, []);
 
+  const scrollToBottomButton = () => {
+    if (bottomButtonRef.current) {
+      bottomButtonRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const header = (
     <Box
       sx={{
@@ -37,7 +44,7 @@ export default function Home() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         paddingBlockStart: isMobile ? "15vh" : "20vh",
-        paddingBlockEnd: isMobile ? "15vh" : "25vh",
+        paddingBlockEnd: isMobile ? "10vh" : "25vh",
       }}
     >
       <Typography
@@ -52,7 +59,12 @@ export default function Home() {
       >
         AG MASTERING
       </Typography>
-      <Typography variant="h5" align="center" color={"white"}>
+      <Typography
+        variant={isMobile ? "h6" : "h5"}
+        align="center"
+        color={"white"}
+        mt={isMobile ? "-2vh" : 0}
+      >
         MIXING | MASTERING
       </Typography>
     </Box>
@@ -91,7 +103,10 @@ export default function Home() {
             <Button
               variant="contained"
               size="large"
-              onClick={() => navigate("/contact")}
+              onClick={() => {
+                // navigate("/contact");
+                scrollToBottomButton();
+              }}
             >
               GET IN TOUCH
             </Button>
@@ -108,23 +123,28 @@ export default function Home() {
       <AudioPlayer />
       <Divider />
       <Testimonials />
-      <Divider />
+      {/* <Divider /> */}
       <ServicesSection />
-      <Divider />
-      <Box textAlign={"center"} sx={{ flexGrow: 1, paddingBlock: 10 }}>
-        <Container maxWidth="md">
-          <Typography variant="h6" align="center">
-            Get in touch for inquiries and
-            <br /> price quotes &#128071;
-          </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ marginBlockStart: 4 }}
-            onClick={() => navigate("/contact")}
-          >
-            GET IN TOUCH
-          </Button>
+      {/* <Divider /> */}
+      <Box
+        ref={bottomButtonRef}
+        textAlign={"center"}
+        sx={{ flexGrow: 1, paddingBlock: 10 }}
+      >
+        <Typography variant="h6" align="center">
+          Get in touch for inquiries and
+          <br /> price quotes &#128071;
+        </Typography>
+        <Container component="main" maxWidth="xs" sx={{ paddingBlockStart: 6 }}>
+          <div>
+            <iframe
+              src="https://www.cognitoforms.com/f/U4vz2LbkqUSZjRW89TkxTQ/4"
+              width={"100%"}
+              style={{ border: 0 }}
+              height="651"
+            ></iframe>
+            <script src="https://www.cognitoforms.com/f/iframe.js"></script>
+          </div>
         </Container>
       </Box>
     </div>

@@ -11,7 +11,7 @@ const tiers = getPriceTiers();
 
 export default function ServicesSection() {
   return (
-    <Box sx={{ paddingBlock: 6 }}>
+    <Box sx={{ pt: { xs: 4, sm: 6 } }}>
       <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
@@ -27,7 +27,7 @@ export default function ServicesSection() {
         </Typography>
       </Container>
       <Container maxWidth="md" component="main">
-        <Grid container spacing={5} justifyContent="center" mb={8}>
+        <Grid container spacing={5} justifyContent="center">
           {tiers.map((tier) => (
             <Grid item key={tier.title} xs={12} sm={6}>
               <Box textAlign="center">

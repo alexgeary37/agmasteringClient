@@ -13,7 +13,7 @@ import PaymentSuccess from "./components/checkout/PaymentSuccess.jsx";
 export default function App() {
   return (
     <div>
-      <ResponsiveAppBar />
+      {/* <ResponsiveAppBar /> */}
       <Routes>
         <Route exact path={`/`} element={<Home />} />
         <Route exact path={`/services`} element={<Services />} />
