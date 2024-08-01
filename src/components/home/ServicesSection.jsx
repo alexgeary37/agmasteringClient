@@ -11,17 +11,18 @@ const tiers = getPriceTiers();
 
 export default function ServicesSection() {
   return (
-    <Box sx={{ pt: { xs: 4, sm: 6 } }}>
-      <GlobalStyles
+    <Box sx={{ pt: { xs: "5vh", sm: "8vh" }, pb: "8vh" }}>
+      {/* <GlobalStyles
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      />
-      <Container disableGutters maxWidth="md" component="main" sx={{ pb: 6 }}>
+      /> */}
+      <Container disableGutters maxWidth="md" component="main">
         <Typography
           component="h1"
           variant="h2"
           align="center"
           color="text.primary"
           gutterBottom
+          paddingBlockEnd={"4vh"}
         >
           Services
         </Typography>

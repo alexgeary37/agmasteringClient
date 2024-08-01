@@ -76,7 +76,7 @@ export default function Home() {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      paddingBlock={8}
+      paddingBlock={"8vh"}
     >
       <Avatar
         alt="Alex Geary"
@@ -103,10 +103,7 @@ export default function Home() {
             <Button
               variant="contained"
               size="large"
-              onClick={() => {
-                // navigate("/contact");
-                scrollToBottomButton();
-              }}
+              onClick={() => scrollToBottomButton()}
             >
               GET IN TOUCH
             </Button>
@@ -125,17 +122,27 @@ export default function Home() {
       <Testimonials />
       {/* <Divider /> */}
       <ServicesSection />
-      {/* <Divider /> */}
+      <Divider />
       <Box
         ref={bottomButtonRef}
         textAlign={"center"}
-        sx={{ flexGrow: 1, paddingBlock: 10 }}
+        sx={{ flexGrow: 1, marginBlockStart: "4vh" }}
       >
-        <Typography variant="h6" align="center">
-          Get in touch for inquiries and
-          <br /> price quotes &#128071;
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+          gutterBottom
+        >
+          Get In Touch
         </Typography>
-        <Container component="main" maxWidth="xs" sx={{ paddingBlockStart: 6 }}>
+        <Container maxWidth="sm">
+          <Typography variant="h6" align="center">
+            Fill out the form below for inquiries and price quotes
+          </Typography>
+        </Container>
+        <Container component="main" maxWidth="xs" sx={{ paddingBlockStart: 3 }}>
           <div>
             <iframe
               src="https://www.cognitoforms.com/f/U4vz2LbkqUSZjRW89TkxTQ/4"
