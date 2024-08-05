@@ -1,20 +1,13 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
-import { getPriceTiers } from "../../utilities/getPriceTiers";
-
-const tiers = getPriceTiers();
+import { Tune, Album } from "@mui/icons-material";
 
 export default function ServicesSection() {
   return (
-    <Box sx={{ pt: { xs: "5vh", sm: "8vh" }, pb: "8vh" }}>
-      {/* <GlobalStyles
-        styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
-      /> */}
+    <Box sx={{ mt: { xs: "5vh", sm: "8vh" }, mb: "8vh" }}>
       <Container disableGutters maxWidth="md" component="main">
         <Typography
           component="h1"
@@ -22,31 +15,65 @@ export default function ServicesSection() {
           align="center"
           color="text.primary"
           gutterBottom
-          paddingBlockEnd={"4vh"}
+          paddingBlockEnd={"2vh"}
         >
           Services
         </Typography>
       </Container>
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} justifyContent="center">
-          {tiers.map((tier) => (
-            <Grid item key={tier.title} xs={12} sm={6}>
-              <Box textAlign="center">
-                <Typography
-                  variant="h5"
-                  align="center"
-                  color="text.primary"
-                  gutterBottom
-                >
-                  {tier.title}
-                </Typography>
-                <Typography variant="body1" align="center" mb={1}>
-                  {tier.description}
-                </Typography>
-              </Box>
-            </Grid>
-          ))}
+          <Grid item xs={12} sm={6}>
+            <Box textAlign="center">
+              <Tune
+                style={{
+                  transform: "rotate(90deg)",
+                  fontSize: "4rem",
+                }}
+              />
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                Mixing
+              </Typography>
+              <Typography variant="body1" align="center">
+                I take the raw tracks you recorded at any professional studio or
+                home studio, and turn them into a professional, polished
+                recording.
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Box textAlign="center">
+              <Album style={{ fontSize: "4rem" }} />
+              <Typography
+                variant="h5"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                Mastering
+              </Typography>
+              <Typography variant="body1" align="center">
+                I transform your final mixes into loud, punchy masters that
+                translate across all platforms and playback systems.
+              </Typography>
+            </Box>
+          </Grid>
         </Grid>
+        <Container maxWidth="sm">
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            align="center"
+            mt={"6vh"}
+          >
+            Alternate mixes such as instrumental, acapella, etc are available
+            for both mixing and mastering.
+          </Typography>
+        </Container>
         {/* <Typography variant="h6" align="center">
           Find out more about each option <Link to="/services">here</Link>
         </Typography> */}

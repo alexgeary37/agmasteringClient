@@ -8,7 +8,7 @@ export const getPriceTiers = () => {
       title: "Mixing",
       // price: MIX_PRICE,
       description:
-        "Individual and combined processing of all the elements of a song to create a cohesive, balanced sound. Alternate versions such as instrumental, acapella, etc are available.",
+        "I take raw the tracks you recorded at any professional studio or home studio, and turn them into a professional, polished recording.",
       buttonText: "START MIXING",
       buttonVariant: "contained",
     },
@@ -16,7 +16,7 @@ export const getPriceTiers = () => {
       title: "Mastering",
       // price: MASTER_PRICE,
       description:
-        "Processing applied to the final mix to create a fully defined master with optimal loudness to cut an album or release on streaming services. Alternate versions are available and revisions if necessary.",
+        "I transform your final mixes into loud, punchy masters that translate across all platforms and playback systems.",
       buttonText: "START MASTERING",
       buttonVariant: "contained",
     },

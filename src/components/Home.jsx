@@ -120,13 +120,13 @@ export default function Home() {
       <AudioPlayer />
       <Divider />
       <Testimonials />
-      {/* <Divider /> */}
+      <Divider />
       <ServicesSection />
       <Divider />
       <Box
         ref={bottomButtonRef}
         textAlign={"center"}
-        sx={{ flexGrow: 1, marginBlockStart: "4vh" }}
+        sx={{ flexGrow: 1, mt: { xs: "5vh", sm: "8vh" }, mb: "8vh" }}
       >
         <Typography
           component="h1"
