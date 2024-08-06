@@ -4,6 +4,9 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Tune, Album } from "@mui/icons-material";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
 
 export default function ServicesSection() {
   return (
@@ -63,20 +66,15 @@ export default function ServicesSection() {
             </Box>
           </Grid>
         </Grid>
-        <Container maxWidth="sm">
-          <Typography
-            variant="h6"
-            color="text.secondary"
-            align="center"
-            mt={"6vh"}
-          >
-            Alternate mixes such as instrumental, acapella, etc are available
-            for both mixing and mastering.
+        <Container maxWidth="xs" sx={{ mt: { xs: "5vh", sm: "8vh" } }}>
+          <Typography variant="body1" align="center">
+            • Alternate mixes such as instrumental, acapella, etc are available
+            for both mixing and mastering
+          </Typography>
+          <Typography variant="body1" align="center" mt={"4vh"}>
+            • Stem mastering is also available
           </Typography>
         </Container>
-        {/* <Typography variant="h6" align="center">
-          Find out more about each option <Link to="/services">here</Link>
-        </Typography> */}
       </Container>
     </Box>
   );

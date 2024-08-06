@@ -119,9 +119,9 @@ export default function Home() {
       {bio}
       <AudioPlayer />
       <Divider />
-      <Testimonials />
-      <Divider />
       <ServicesSection />
+      <Divider />
+      <Testimonials />
       <Divider />
       <Box
         ref={bottomButtonRef}
