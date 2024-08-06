@@ -12,9 +12,9 @@ import {
   Link,
 } from "@mui/material";
 import soundboard from "../images/soundboard.png";
-import { getPriceTiers } from "../utilities/getPriceTiers";
+// import { getPriceTiers } from "../utilities/getPriceTiers";
 
-const tiers = getPriceTiers();
+// const tiers = getPriceTiers();
 
 export default function Services() {
   useEffect(() => {

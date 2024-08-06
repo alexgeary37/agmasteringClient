@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { Avatar, Button, Container, Divider, Typography } from "@mui/material";
 import soundboard from "../images/soundboard.png";
@@ -9,7 +8,6 @@ import { useEffect, useRef, useState } from "react";
 import ServicesSection from "./home/ServicesSection";
 
 export default function Home() {
-  let navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   const bottomButtonRef = useRef(null);
 
@@ -145,6 +143,7 @@ export default function Home() {
         <Container component="main" maxWidth="xs" sx={{ paddingBlockStart: 3 }}>
           <div>
             <iframe
+              title="U4vz2LbkqUSZjRW89TkxTQ/4"
               src="https://www.cognitoforms.com/f/U4vz2LbkqUSZjRW89TkxTQ/4"
               width={"100%"}
               style={{ border: 0 }}

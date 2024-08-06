@@ -1,6 +1,6 @@
-const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
-const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
-const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
+// const MIX_PRICE = process.env.REACT_APP_MIX_PRICE;
+// const MASTER_PRICE = process.env.REACT_APP_MASTER_PRICE;
+// const MIX_MASTER_PRICE = process.env.REACT_APP_MIX_MASTER_PRICE;
 
 export const getPriceTiers = () => {
   return [
