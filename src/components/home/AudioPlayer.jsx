@@ -1,9 +1,15 @@
 import Slow_Down_Raw_MP3 from "../../music/Slow_Down_Raw.mp3";
 import Slow_Down_Raw_WEBM from "../../music/Slow_Down_Raw.webm";
 import Slow_Down_Mix_MP3 from "../../music/Slow_Down_Mix.mp3";
-import Slow_Down_Mix_WEBM from "../../music/Slow_Down_Mix.mp3";
+import Slow_Down_Mix_WEBM from "../../music/Slow_Down_Mix.webm";
 import Slow_Down_Master_MP3 from "../../music/Slow_Down_Master.mp3";
-import Slow_Down_Master_WEBM from "../../music/Slow_Down_Master.mp3";
+import Slow_Down_Master_WEBM from "../../music/Slow_Down_Master.webm";
+import Nearly_There_Raw_MP3 from "../../music/Nearly_There_Raw.mp3";
+import Nearly_There_Raw_WEBM from "../../music/Nearly_There_Raw.webm";
+import Nearly_There_Mix_MP3 from "../../music/Nearly_There_Mix.mp3";
+import Nearly_There_Mix_WEBM from "../../music/Nearly_There_Mix.webm";
+import Nearly_There_Master_MP3 from "../../music/Nearly_There_Master.mp3";
+import Nearly_There_Master_WEBM from "../../music/Nearly_There_Master.webm";
 import {
   Box,
   Container,
@@ -18,8 +24,8 @@ import {
 import {
   PlayArrowRounded,
   PauseRounded,
-  // SkipPrevious,
-  // SkipNext,
+  SkipPrevious,
+  SkipNext,
 } from "@mui/icons-material";
 import { useEffect, useRef, useState } from "react";
 import { Howl } from "howler";
@@ -40,7 +46,7 @@ const TinyText = styled(Typography)({
   textAlign: "center",
 });
 
-const trackNames = ["Slow Down", "Track 2", "Track 3333"];
+const trackNames = ["Slow Down", "Nearly There"];
 
 const bgColours = [
   "linear-gradient(90deg, rgba(63,63,66,1) 0%, rgba(213,218,219,1) 100%)",
@@ -64,21 +70,23 @@ const mastered1 = new Howl({
   loop: true,
 });
 
-// const original2 = new Howl({
-//   src: [Anymore_Pacific_Master],
-//   volume: 1,
-//   loop: true,
-// });
-// const mixed2 = new Howl({
-//   src: [Anymore_Pacific_Master],
-//   volume: 0,
-//   loop: true,
-// });
-// const mastered2 = new Howl({
-//   src: [Anymore_Pacific_Master],
-//   volume: 0,
-//   loop: true,
-// });
+const original2 = new Howl({
+  src: [Nearly_There_Raw_WEBM, Nearly_There_Raw_MP3],
+  volume: 1,
+  loop: true,
+});
+const mixed2 = new Howl({
+  src: [Nearly_There_Mix_WEBM, Nearly_There_Mix_MP3],
+  volume: 0,
+  loop: true,
+});
+const mastered2 = new Howl({
+  src: [Nearly_There_Master_WEBM, Nearly_There_Master_MP3],
+  volume: 0,
+  loop: true,
+});
+
+const numTracks = 2;
 
 export default function AudioPlayer() {
   const [paused, setPaused] = useState(true);
@@ -141,19 +149,19 @@ export default function AudioPlayer() {
 
   const switchVersion = () => {
     stop();
-    // if (trackNumber === 0) {
-    original.current = original1;
-    mixed.current = mixed1;
-    mastered.current = mastered1;
-    // } else if (trackNumber === 1) {
-    //   original.current = original2;
-    //   mixed.current = mixed2;
-    //   mastered.current = mastered2;
-    // } else {
-    //   original.current = original3;
-    //   mixed.current = mixed3;
-    //   mastered.current = mastered3;
-    // }
+    if (trackNumber === 0) {
+      original.current = original1;
+      mixed.current = mixed1;
+      mastered.current = mastered1;
+    } else if (trackNumber === 1) {
+      original.current = original2;
+      mixed.current = mixed2;
+      mastered.current = mastered2;
+      // } else {
+      // original.current = original3;
+      // mixed.current = mixed3;
+      // mastered.current = mastered3;
+    }
     const newDuration = mastered.current.duration();
     setDuration(newDuration);
     selectVersion();
@@ -189,7 +197,7 @@ export default function AudioPlayer() {
   const playNext = () => {
     if (mastered.current._state === "loaded") {
       setTrackNumber((prevTrackNumber) =>
-        prevTrackNumber >= 2 ? 0 : prevTrackNumber + 1
+        prevTrackNumber >= numTracks - 1 ? 0 : prevTrackNumber + 1
       );
     }
   };
@@ -198,7 +206,7 @@ export default function AudioPlayer() {
   const playPrevious = () => {
     if (mastered.current._state === "loaded") {
       setTrackNumber((prevTrackNumber) =>
-        prevTrackNumber <= 0 ? 2 : prevTrackNumber - 1
+        prevTrackNumber <= 0 ? numTracks - 1 : prevTrackNumber - 1
       );
     }
   };
@@ -316,9 +324,9 @@ export default function AudioPlayer() {
             </Stack>
 
             <Box display={"flex"} justifyContent={"center"} mt={-2} mb={1}>
-              {/* <IconButton aria-label="previous song" onClick={playPrevious}>
+              <IconButton aria-label="previous song" onClick={playPrevious}>
                 <SkipPrevious fontSize="large" sx={{ color: "white" }} />
-              </IconButton> */}
+              </IconButton>
               <IconButton
                 disabled={duration === 0}
                 aria-label={paused ? "play" : "pause"}
@@ -330,9 +338,9 @@ export default function AudioPlayer() {
                   <PauseRounded sx={{ fontSize: "3rem", color: "white" }} />
                 )}
               </IconButton>
-              {/* <IconButton aria-label="next song" onClick={playNext}>
+              <IconButton aria-label="next song" onClick={playNext}>
                 <SkipNext fontSize="large" sx={{ color: "white" }} />
-              </IconButton> */}
+              </IconButton>
             </Box>
             <Typography
               display={"flex"}
