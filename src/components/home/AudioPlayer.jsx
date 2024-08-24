@@ -73,7 +73,6 @@ export default function AudioPlayer() {
   }, [version]);
 
   useEffect(() => {
-    console.log("trackNumber:", trackNumber);
     // Only allow after first track has been loaded.
     if (master.current._state === "loaded") {
       switchTrack();
