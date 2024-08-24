@@ -1,15 +1,3 @@
-import SlowDownRawMP3 from "../../music/Slow_Down_Raw.mp3";
-import SlowDownRawWEBM from "../../music/Slow_Down_Raw.webm";
-import SlowDownMixMP3 from "../../music/Slow_Down_Mix.mp3";
-import SlowDownMixWEBM from "../../music/Slow_Down_Mix.webm";
-import SlowDownMasterMP3 from "../../music/Slow_Down_Master.mp3";
-import SlowDownMasterWEBM from "../../music/Slow_Down_Master.webm";
-import NearlyThereRawMP3 from "../../music/Nearly_There_Raw.mp3";
-import NearlyThereRawWEBM from "../../music/Nearly_There_Raw.webm";
-import NearlyThereMixMP3 from "../../music/Nearly_There_Mix.mp3";
-import NearlyThereMixWEBM from "../../music/Nearly_There_Mix.webm";
-import NearlyThereMasterMP3 from "../../music/Nearly_There_Master.mp3";
-import NearlyThereMasterWEBM from "../../music/Nearly_There_Master.webm";
 import {
   Box,
   Container,
@@ -28,8 +16,7 @@ import {
   SkipNext,
 } from "@mui/icons-material";
 import { useEffect, useRef, useState } from "react";
-import { Howl } from "howler";
-// https://github.com/goldfire/howler.js#documentation
+import { trackData, trackNames, numTracks } from "../../utilities/audioPlayer";
 
 const MuiToggleButton = styled(ToggleButton)({
   "&.Mui-selected, &.Mui-selected:hover": {
@@ -46,34 +33,11 @@ const TinyText = styled(Typography)({
   textAlign: "center",
 });
 
-const trackNames = ["Slow Down", "Nearly There"];
-
-const bgColours = [
+export const bgColours = [
   "linear-gradient(90deg, rgba(63,63,66,1) 0%, rgba(213,218,219,1) 100%)",
-  "linear-gradient(90deg, rgba(32,32,96,1) 0%, rgba(104,185,194,1) 100%)",
-  "linear-gradient(90deg, rgba(0,0,107,1) 0%, rgba(0,232,255,1) 100%)",
+  "linear-gradient(90deg, rgba(32,32,96,1) 0%, rgba(104,185,194,1) 70%)",
+  "linear-gradient(90deg, rgba(0,0,107,1) 0%, rgba(0,232,255,1) 70%)",
 ];
-
-const createHowlInstance = (srcs, v) =>
-  new Howl({ src: srcs, volume: v, loop: true });
-
-const trackData = {
-  slowDown: {
-    raw: createHowlInstance([SlowDownRawWEBM, SlowDownRawMP3], 1),
-    mix: createHowlInstance([SlowDownMixWEBM, SlowDownMixMP3], 0),
-    master: createHowlInstance([SlowDownMasterWEBM, SlowDownMasterMP3], 0),
-  },
-  nearlyThere: {
-    raw: createHowlInstance([NearlyThereRawWEBM, NearlyThereRawMP3], 1),
-    mix: createHowlInstance([NearlyThereMixWEBM, NearlyThereMixMP3], 0),
-    master: createHowlInstance(
-      [NearlyThereMasterWEBM, NearlyThereMasterMP3],
-      0
-    ),
-  },
-};
-
-const numTracks = Object.keys(trackData).length;
 
 export default function AudioPlayer() {
   const [paused, setPaused] = useState(true);
@@ -109,9 +73,10 @@ export default function AudioPlayer() {
   }, [version]);
 
   useEffect(() => {
+    console.log("trackNumber:", trackNumber);
     // Only allow after first track has been loaded.
     if (master.current._state === "loaded") {
-      switchVersion();
+      switchTrack();
     } // eslint-disable-next-line
   }, [trackNumber]);
 
@@ -134,7 +99,7 @@ export default function AudioPlayer() {
     setSliderPos(0);
   };
 
-  const switchVersion = () => {
+  const switchTrack = () => {
     stop();
     if (trackNumber === 0) {
       raw.current = trackData.slowDown.raw;
@@ -144,15 +109,33 @@ export default function AudioPlayer() {
       raw.current = trackData.nearlyThere.raw;
       mix.current = trackData.nearlyThere.mix;
       master.current = trackData.nearlyThere.master;
-      // } else {
-      // raw.current = original3;
-      // mix.current = mix3;
-      // master.current = master3;
     }
     const newDuration = master.current.duration();
     setDuration(newDuration);
     selectVersion();
     if (!paused) play(newDuration);
+  };
+
+  const selectVersion = () => {
+    if (version === "ORIGINAL") {
+      if (master.current.volume() === 1) master.current.fade(1, 0, 50);
+      else if (mix.current.volume() === 1) mix.current.fade(1, 0, 50);
+      else return;
+      raw.current.fade(0, 1, 50);
+      setBgColour(0);
+    } else if (version === "MIXED") {
+      if (raw.current.volume() === 1) raw.current.fade(1, 0, 50);
+      else if (master.current.volume() === 1) master.current.fade(1, 0, 50);
+      else return;
+      mix.current.fade(0, 1, 50);
+      setBgColour(1);
+    } else {
+      if (raw.current.volume() === 1) raw.current.fade(1, 0, 50);
+      else if (mix.current.volume() === 1) mix.current.fade(1, 0, 50);
+      else return;
+      master.current.fade(0, 1, 50);
+      setBgColour(2);
+    }
   };
 
   const play = (newDuration) => {
@@ -196,52 +179,6 @@ export default function AudioPlayer() {
         prevTrackNumber <= 0 ? numTracks - 1 : prevTrackNumber - 1
       );
     }
-  };
-
-  const selectVersion = () => {
-    if (version === "ORIGINAL") {
-      playRaw();
-    } else if (version === "MIXED") {
-      playMix();
-    } else {
-      playMaster();
-    }
-  };
-
-  const playRaw = () => {
-    if (master.current.volume() === 1) {
-      master.current.fade(1, 0, 50);
-    } else if (mix.current.volume() === 1) {
-      mix.current.fade(1, 0, 50);
-    } else {
-      return;
-    }
-    raw.current.fade(0, 1, 50);
-    setBgColour(0);
-  };
-
-  const playMix = () => {
-    if (raw.current.volume() === 1) {
-      raw.current.fade(1, 0, 50);
-    } else if (master.current.volume() === 1) {
-      master.current.fade(1, 0, 50);
-    } else {
-      return;
-    }
-    mix.current.fade(0, 1, 50);
-    setBgColour(1);
-  };
-
-  const playMaster = () => {
-    if (raw.current.volume() === 1) {
-      raw.current.fade(1, 0, 50);
-    } else if (mix.current.volume() === 1) {
-      mix.current.fade(1, 0, 50);
-    } else {
-      return;
-    }
-    master.current.fade(0, 1, 50);
-    setBgColour(2);
   };
 
   const handleSliderChange = (e, newValue) => {
