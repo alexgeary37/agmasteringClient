@@ -1,15 +1,15 @@
-import Slow_Down_Raw_MP3 from "../../music/Slow_Down_Raw.mp3";
-import Slow_Down_Raw_WEBM from "../../music/Slow_Down_Raw.webm";
-import Slow_Down_Mix_MP3 from "../../music/Slow_Down_Mix.mp3";
-import Slow_Down_Mix_WEBM from "../../music/Slow_Down_Mix.webm";
-import Slow_Down_Master_MP3 from "../../music/Slow_Down_Master.mp3";
-import Slow_Down_Master_WEBM from "../../music/Slow_Down_Master.webm";
-import Nearly_There_Raw_MP3 from "../../music/Nearly_There_Raw.mp3";
-import Nearly_There_Raw_WEBM from "../../music/Nearly_There_Raw.webm";
-import Nearly_There_Mix_MP3 from "../../music/Nearly_There_Mix.mp3";
-import Nearly_There_Mix_WEBM from "../../music/Nearly_There_Mix.webm";
-import Nearly_There_Master_MP3 from "../../music/Nearly_There_Master.mp3";
-import Nearly_There_Master_WEBM from "../../music/Nearly_There_Master.webm";
+import SlowDownRawMP3 from "../../music/Slow_Down_Raw.mp3";
+import SlowDownRawWEBM from "../../music/Slow_Down_Raw.webm";
+import SlowDownMixMP3 from "../../music/Slow_Down_Mix.mp3";
+import SlowDownMixWEBM from "../../music/Slow_Down_Mix.webm";
+import SlowDownMasterMP3 from "../../music/Slow_Down_Master.mp3";
+import SlowDownMasterWEBM from "../../music/Slow_Down_Master.webm";
+import NearlyThereRawMP3 from "../../music/Nearly_There_Raw.mp3";
+import NearlyThereRawWEBM from "../../music/Nearly_There_Raw.webm";
+import NearlyThereMixMP3 from "../../music/Nearly_There_Mix.mp3";
+import NearlyThereMixWEBM from "../../music/Nearly_There_Mix.webm";
+import NearlyThereMasterMP3 from "../../music/Nearly_There_Master.mp3";
+import NearlyThereMasterWEBM from "../../music/Nearly_There_Master.webm";
 import {
   Box,
   Container,
@@ -50,43 +50,30 @@ const trackNames = ["Slow Down", "Nearly There"];
 
 const bgColours = [
   "linear-gradient(90deg, rgba(63,63,66,1) 0%, rgba(213,218,219,1) 100%)",
-  "linear-gradient(90deg, rgba(32,32,96,1) 0%, rgba(104,185,194,1) 70%)",
-  "linear-gradient(90deg, rgba(0,0,107,1) 0%, rgba(0,232,255,1) 70%)",
+  "linear-gradient(90deg, rgba(32,32,96,1) 0%, rgba(104,185,194,1) 100%)",
+  "linear-gradient(90deg, rgba(0,0,107,1) 0%, rgba(0,232,255,1) 100%)",
 ];
 
-const original1 = new Howl({
-  src: [Slow_Down_Raw_WEBM, Slow_Down_Raw_MP3],
-  volume: 1,
-  loop: true,
-});
-const mixed1 = new Howl({
-  src: [Slow_Down_Mix_WEBM, Slow_Down_Mix_MP3],
-  volume: 0,
-  loop: true,
-});
-const mastered1 = new Howl({
-  src: [Slow_Down_Master_WEBM, Slow_Down_Master_MP3],
-  volume: 0,
-  loop: true,
-});
+const createHowlInstance = (srcs, v) =>
+  new Howl({ src: srcs, volume: v, loop: true });
 
-const original2 = new Howl({
-  src: [Nearly_There_Raw_WEBM, Nearly_There_Raw_MP3],
-  volume: 1,
-  loop: true,
-});
-const mixed2 = new Howl({
-  src: [Nearly_There_Mix_WEBM, Nearly_There_Mix_MP3],
-  volume: 0,
-  loop: true,
-});
-const mastered2 = new Howl({
-  src: [Nearly_There_Master_WEBM, Nearly_There_Master_MP3],
-  volume: 0,
-  loop: true,
-});
+const trackData = {
+  slowDown: {
+    raw: createHowlInstance([SlowDownRawWEBM, SlowDownRawMP3], 1),
+    mix: createHowlInstance([SlowDownMixWEBM, SlowDownMixMP3], 0),
+    master: createHowlInstance([SlowDownMasterWEBM, SlowDownMasterMP3], 0),
+  },
+  nearlyThere: {
+    raw: createHowlInstance([NearlyThereRawWEBM, NearlyThereRawMP3], 1),
+    mix: createHowlInstance([NearlyThereMixWEBM, NearlyThereMixMP3], 0),
+    master: createHowlInstance(
+      [NearlyThereMasterWEBM, NearlyThereMasterMP3],
+      0
+    ),
+  },
+};
 
-const numTracks = 2;
+const numTracks = Object.keys(trackData).length;
 
 export default function AudioPlayer() {
   const [paused, setPaused] = useState(true);
@@ -97,9 +84,9 @@ export default function AudioPlayer() {
   const [version, setVersion] = useState("ORIGINAL");
   const [bgColour, setBgColour] = useState(0);
 
-  const original = useRef(null);
-  const mixed = useRef(null);
-  const mastered = useRef(null);
+  const raw = useRef(null);
+  const mix = useRef(null);
+  const master = useRef(null);
   const playInterval = useRef(null);
 
   const formatDuration = (value) => {
@@ -123,25 +110,25 @@ export default function AudioPlayer() {
 
   useEffect(() => {
     // Only allow after first track has been loaded.
-    if (mastered.current._state === "loaded") {
+    if (master.current._state === "loaded") {
       switchVersion();
     } // eslint-disable-next-line
   }, [trackNumber]);
 
   const loadAudioFiles = () => {
-    original.current = original1;
-    mixed.current = mixed1;
-    mastered.current = mastered1;
+    raw.current = trackData.slowDown.raw;
+    mix.current = trackData.slowDown.mix;
+    master.current = trackData.slowDown.master;
 
-    mastered.current.on("load", () => {
-      setDuration(mastered.current.duration());
+    master.current.on("load", () => {
+      setDuration(master.current.duration());
     });
   };
 
   const stop = () => {
-    original.current.stop();
-    mixed.current.stop();
-    mastered.current.stop();
+    raw.current.stop();
+    mix.current.stop();
+    master.current.stop();
     clearInterval(playInterval.current);
     setPosition(0);
     setSliderPos(0);
@@ -150,32 +137,32 @@ export default function AudioPlayer() {
   const switchVersion = () => {
     stop();
     if (trackNumber === 0) {
-      original.current = original1;
-      mixed.current = mixed1;
-      mastered.current = mastered1;
+      raw.current = trackData.slowDown.raw;
+      mix.current = trackData.slowDown.mix;
+      master.current = trackData.slowDown.master;
     } else if (trackNumber === 1) {
-      original.current = original2;
-      mixed.current = mixed2;
-      mastered.current = mastered2;
+      raw.current = trackData.nearlyThere.raw;
+      mix.current = trackData.nearlyThere.mix;
+      master.current = trackData.nearlyThere.master;
       // } else {
-      // original.current = original3;
-      // mixed.current = mixed3;
-      // mastered.current = mastered3;
+      // raw.current = original3;
+      // mix.current = mix3;
+      // master.current = master3;
     }
-    const newDuration = mastered.current.duration();
+    const newDuration = master.current.duration();
     setDuration(newDuration);
     selectVersion();
     if (!paused) play(newDuration);
   };
 
   const play = (newDuration) => {
-    if (mastered.current._state === "loaded") {
-      original.current.play();
-      mixed.current.play();
-      mastered.current.play();
+    if (master.current._state === "loaded") {
+      raw.current.play();
+      mix.current.play();
+      master.current.play();
       setPaused(false);
       playInterval.current = setInterval(() => {
-        const pos = original.current.seek();
+        const pos = raw.current.seek();
         setPosition(pos);
         const dur = newDuration === null ? duration : newDuration;
         setSliderPos(() => (pos / dur) * 100);
@@ -184,10 +171,10 @@ export default function AudioPlayer() {
   };
 
   const pause = () => {
-    if (mastered.current._state === "loaded") {
-      original.current.pause();
-      mixed.current.pause();
-      mastered.current.pause();
+    if (master.current._state === "loaded") {
+      raw.current.pause();
+      mix.current.pause();
+      master.current.pause();
       setPaused(true);
       clearInterval(playInterval.current);
     }
@@ -195,7 +182,7 @@ export default function AudioPlayer() {
 
   // eslint-disable-next-line
   const playNext = () => {
-    if (mastered.current._state === "loaded") {
+    if (master.current._state === "loaded") {
       setTrackNumber((prevTrackNumber) =>
         prevTrackNumber >= numTracks - 1 ? 0 : prevTrackNumber + 1
       );
@@ -204,7 +191,7 @@ export default function AudioPlayer() {
 
   // eslint-disable-next-line
   const playPrevious = () => {
-    if (mastered.current._state === "loaded") {
+    if (master.current._state === "loaded") {
       setTrackNumber((prevTrackNumber) =>
         prevTrackNumber <= 0 ? numTracks - 1 : prevTrackNumber - 1
       );
@@ -213,7 +200,7 @@ export default function AudioPlayer() {
 
   const selectVersion = () => {
     if (version === "ORIGINAL") {
-      playOriginal();
+      playRaw();
     } else if (version === "MIXED") {
       playMix();
     } else {
@@ -221,47 +208,47 @@ export default function AudioPlayer() {
     }
   };
 
-  const playOriginal = () => {
-    if (mastered.current.volume() === 1) {
-      mastered.current.fade(1, 0, 50);
-    } else if (mixed.current.volume() === 1) {
-      mixed.current.fade(1, 0, 50);
+  const playRaw = () => {
+    if (master.current.volume() === 1) {
+      master.current.fade(1, 0, 50);
+    } else if (mix.current.volume() === 1) {
+      mix.current.fade(1, 0, 50);
     } else {
       return;
     }
-    original.current.fade(0, 1, 50);
+    raw.current.fade(0, 1, 50);
     setBgColour(0);
   };
 
   const playMix = () => {
-    if (original.current.volume() === 1) {
-      original.current.fade(1, 0, 50);
-    } else if (mastered.current.volume() === 1) {
-      mastered.current.fade(1, 0, 50);
+    if (raw.current.volume() === 1) {
+      raw.current.fade(1, 0, 50);
+    } else if (master.current.volume() === 1) {
+      master.current.fade(1, 0, 50);
     } else {
       return;
     }
-    mixed.current.fade(0, 1, 50);
+    mix.current.fade(0, 1, 50);
     setBgColour(1);
   };
 
   const playMaster = () => {
-    if (original.current.volume() === 1) {
-      original.current.fade(1, 0, 50);
-    } else if (mixed.current.volume() === 1) {
-      mixed.current.fade(1, 0, 50);
+    if (raw.current.volume() === 1) {
+      raw.current.fade(1, 0, 50);
+    } else if (mix.current.volume() === 1) {
+      mix.current.fade(1, 0, 50);
     } else {
       return;
     }
-    mastered.current.fade(0, 1, 50);
+    master.current.fade(0, 1, 50);
     setBgColour(2);
   };
 
   const handleSliderChange = (e, newValue) => {
     const newPos = duration * (newValue / 100);
-    original.current.seek(newPos);
-    mixed.current.seek(newPos);
-    mastered.current.seek(newPos);
+    raw.current.seek(newPos);
+    mix.current.seek(newPos);
+    master.current.seek(newPos);
     setPosition(newPos);
     setSliderPos(newValue);
   };
