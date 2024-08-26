@@ -108,6 +108,10 @@ export default function AudioPlayer() {
       raw.current = trackData.nearlyThere.raw;
       mix.current = trackData.nearlyThere.mix;
       master.current = trackData.nearlyThere.master;
+    } else {
+      raw.current = trackData.isItOver.raw;
+      mix.current = trackData.isItOver.mix;
+      master.current = trackData.isItOver.master;
     }
     const newDuration = master.current.duration();
     setDuration(newDuration);
