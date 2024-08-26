@@ -81,17 +81,16 @@ export default function Home() {
         src={profilePic}
         sx={{ width: 100, height: 100, marginBottom: 4 }}
       />
-      <Container maxWidth="sm">
+      <Container maxWidth="xs">
         <Typography variant="h6" align="center" paddingBlockEnd={2}>
           Hi, I'm Alex Geary!
         </Typography>
         <Typography variant="h6" align="center" paddingBlockEnd={2}>
-          I help electronic producers and indie artists get professional, modern
-          mixes ready for release.
+          I help rising artists get modern, professional sounding mixes ready
+          for release.
         </Typography>
         <Typography variant="h6" align="center">
-          Get in touch for inquiries and
-          <br /> price quotes &#128071;
+          Get in touch to see what I can do for you &#128071;
         </Typography>
         <Box
           textAlign={"center"}
@@ -135,11 +134,6 @@ export default function Home() {
         >
           Get In Touch
         </Typography>
-        <Container maxWidth="sm">
-          <Typography variant="h6" align="center">
-            Fill out the form below for inquiries and price quotes
-          </Typography>
-        </Container>
         <Container component="main" maxWidth="xs" sx={{ paddingBlockStart: 3 }}>
           <div>
             <iframe
