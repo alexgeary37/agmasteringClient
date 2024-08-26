@@ -36,8 +36,8 @@ export default function Testimonials() {
       id="testimonials"
       maxWidth="md"
       sx={{
-        mt: { xs: "5vh", sm: "8vh" },
-        mb: "8vh",
+        paddingBlockStart: { xs: "5vh", sm: "8vh" },
+        paddingBlockEnd: "8vh",
         // pb: { xs: 8, sm: 10 },
         position: "relative",
         display: "flex",

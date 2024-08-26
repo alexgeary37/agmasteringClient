@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-// import { Tune } from "@mui/icons-material";
 import { Icon } from "@iconify/react";
 
 export default function ServicesSection() {
@@ -25,12 +24,6 @@ export default function ServicesSection() {
         <Grid container spacing={5} justifyContent="center">
           <Grid item xs={12} sm={6}>
             <Box textAlign="center">
-              {/* <Tune
-                style={{
-                  transform: "rotate(90deg)",
-                  fontSize: "4rem",
-                }}
-              /> */}
               <Icon
                 icon="simple-line-icons:equalizer"
                 style={{ fontSize: "5rem", marginBottom: "3vh" }}

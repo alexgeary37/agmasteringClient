@@ -119,11 +119,12 @@ export default function Home() {
       <ServicesSection />
       <Divider />
       <Testimonials />
-      <Divider />
+      {/* <Divider /> */}
       <Box
         ref={bottomButtonRef}
         textAlign={"center"}
-        sx={{ flexGrow: 1, mt: { xs: "5vh", sm: "8vh" }, mb: "8vh" }}
+        sx={{ flexGrow: 1, paddingBlockStart: "8vh", paddingBlockEnd: "6vh" }}
+        bgcolor={"white"}
       >
         <Typography
           component="h1"
