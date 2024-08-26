@@ -16,7 +16,24 @@ import {
   SkipNext,
 } from "@mui/icons-material";
 import { useEffect, useRef, useState } from "react";
-import { trackData, trackNames, numTracks } from "../../utilities/audioPlayer";
+import {
+  createHowlInstance,
+  trackData,
+  trackNames,
+  numTracks,
+} from "../../utilities/audioPlayer";
+import NearlyThereRawMP3 from "../../music/Nearly_There_Raw.mp3";
+import NearlyThereRawWEBM from "../../music/Nearly_There_Raw.webm";
+import NearlyThereMixMP3 from "../../music/Nearly_There_Mix.mp3";
+import NearlyThereMixWEBM from "../../music/Nearly_There_Mix.webm";
+import NearlyThereMasterMP3 from "../../music/Nearly_There_Master.mp3";
+import NearlyThereMasterWEBM from "../../music/Nearly_There_Master.webm";
+import IsItOverRawMP3 from "../../music/Is_It_Over_Raw.mp3";
+import IsItOverRawWEBM from "../../music/Is_It_Over_Raw.webm";
+import IsItOverMixMP3 from "../../music/Is_It_Over_Mix.mp3";
+import IsItOverMixWEBM from "../../music/Is_It_Over_Mix.webm";
+import IsItOverMasterMP3 from "../../music/Is_It_Over_Master.mp3";
+import IsItOverMasterWEBM from "../../music/Is_It_Over_Master.webm";
 
 const MuiToggleButton = styled(ToggleButton)({
   "&.Mui-selected, &.Mui-selected:hover": {
@@ -61,7 +78,16 @@ export default function AudioPlayer() {
 
   // Do this only once when the page loads first time.
   useEffect(() => {
-    loadAudioFiles();
+    const loadFilesAndSetup = async () => {
+      await loadAudioFiles(0); // Wait for loadAudioFiles to complete
+
+      // After files are loaded, set up the 'on load' listener
+      master.current.on("load", () => {
+        setDuration(master.current.duration());
+      });
+    };
+
+    loadFilesAndSetup(); // Call the async function
     return () => {
       stop();
     };
@@ -79,14 +105,21 @@ export default function AudioPlayer() {
     } // eslint-disable-next-line
   }, [trackNumber]);
 
-  const loadAudioFiles = () => {
-    raw.current = trackData.slowDown.raw;
-    mix.current = trackData.slowDown.mix;
-    master.current = trackData.slowDown.master;
-
-    master.current.on("load", () => {
-      setDuration(master.current.duration());
+  const loadAudioFiles = (trackNumber) => {
+    return new Promise((resolve) => {
+      raw.current = trackData[trackNumber].raw;
+      mix.current = trackData[trackNumber].mix;
+      master.current = trackData[trackNumber].master;
+      resolve(); // Resolve the Promise once loading is done
     });
+  };
+
+  const checkIfAllLoaded = () => {
+    return (
+      master.current._state === "loaded" &&
+      mix.current._state === "loaded" &&
+      raw.current._state === "loaded"
+    );
   };
 
   const stop = () => {
@@ -98,25 +131,59 @@ export default function AudioPlayer() {
     setSliderPos(0);
   };
 
-  const switchTrack = () => {
+  const switchTrack = async () => {
     stop();
-    if (trackNumber === 0) {
-      raw.current = trackData.slowDown.raw;
-      mix.current = trackData.slowDown.mix;
-      master.current = trackData.slowDown.master;
-    } else if (trackNumber === 1) {
-      raw.current = trackData.nearlyThere.raw;
-      mix.current = trackData.nearlyThere.mix;
-      master.current = trackData.nearlyThere.master;
-    } else {
-      raw.current = trackData.isItOver.raw;
-      mix.current = trackData.isItOver.mix;
-      master.current = trackData.isItOver.master;
+
+    // Lazy load the second and third tracks when needed
+    if (trackNumber === 1 && !trackData[1]) {
+      trackData[1] = {
+        raw: createHowlInstance([NearlyThereRawWEBM, NearlyThereRawMP3], 1),
+        mix: createHowlInstance([NearlyThereMixWEBM, NearlyThereMixMP3], 0),
+        master: createHowlInstance(
+          [NearlyThereMasterWEBM, NearlyThereMasterMP3],
+          0
+        ),
+      };
+    } else if (trackNumber === 2 && !trackData[2]) {
+      trackData[2] = {
+        raw: createHowlInstance([IsItOverRawWEBM, IsItOverRawMP3], 1),
+        mix: createHowlInstance([IsItOverMixWEBM, IsItOverMixMP3], 0),
+        master: createHowlInstance([IsItOverMasterWEBM, IsItOverMasterMP3], 0),
+      };
     }
-    const newDuration = master.current.duration();
-    setDuration(newDuration);
-    selectVersion();
-    if (!paused) play(newDuration);
+
+    await loadAudioFiles(trackNumber);
+
+    let loadedCount = 0; // Counter for loaded tracks
+    const handleLoad = () => {
+      loadedCount += 1;
+
+      // Call setAndPlayNext if all tracks are loaded
+      if (loadedCount === numTracks) setAndPlayNext();
+    };
+
+    const setAndPlayNext = () => {
+      const newDuration = master.current.duration();
+      setDuration(newDuration);
+      selectVersion();
+      if (!paused) play(newDuration);
+    };
+
+    // Check if all tracks are already loaded
+    if (checkIfAllLoaded()) {
+      setAndPlayNext();
+    } else {
+      // Attach 'load' event listeners to all tracks
+      master.current.on("load", handleLoad);
+      mix.current.on("load", handleLoad);
+      raw.current.on("load", handleLoad);
+    }
+
+    return () => {
+      master.current.off("load", handleLoad);
+      mix.current.off("load", handleLoad);
+      raw.current.off("load", handleLoad);
+    };
   };
 
   const selectVersion = () => {
