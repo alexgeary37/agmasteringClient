@@ -90,6 +90,11 @@ export default function AudioPlayer() {
     loadFilesAndSetup(); // Call the async function
     return () => {
       stop();
+      trackData.forEach((track) => {
+        track.raw.unload();
+        track.mix.unload();
+        track.master.unload();
+      });
     };
   }, []);
 
