@@ -38,7 +38,6 @@ export default function Testimonials() {
       sx={{
         paddingBlockStart: { xs: "5vh", sm: "8vh" },
         paddingBlockEnd: "8vh",
-        // pb: { xs: 8, sm: 10 },
         position: "relative",
         display: "flex",
         flexDirection: "column",

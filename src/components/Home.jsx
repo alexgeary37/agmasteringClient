@@ -119,7 +119,6 @@ export default function Home() {
       <ServicesSection />
       <Divider />
       <Testimonials />
-      {/* <Divider /> */}
       <Box
         ref={bottomButtonRef}
         textAlign={"center"}
@@ -130,7 +129,7 @@ export default function Home() {
           component="h1"
           variant="h2"
           align="center"
-          color="text.primary"
+          color="background.default"
           gutterBottom
         >
           Get In Touch

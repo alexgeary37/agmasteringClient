@@ -2,7 +2,6 @@ import { createTheme, responsiveFontSizes } from "@mui/material";
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
     primary: {
       main: "#0FA4AF", // Bright cyan
       light: "#43B3AC", // Lighter cyan
