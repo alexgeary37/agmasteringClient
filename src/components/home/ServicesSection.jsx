@@ -41,7 +41,7 @@ export default function ServicesSection() {
                   I take your raw tracks recorded at either a professional or
                   home studio, and bring them together to give your music
                   clarity, energy and a balanced sound that translates well
-                  across various speaker systems and listening environments.
+                  across all platforms and playback systems.
                 </Typography>
               </Container>
             </Box>
@@ -62,22 +62,25 @@ export default function ServicesSection() {
               </Typography>
               <Container>
                 <Typography variant="body1" align="center" sx={{ mt: "3vh" }}>
-                  I transform your final mixes into loud, punchy masters that
-                  translate across all platforms and playback systems.
+                  I transform your final mixes into loud masters with character
+                  that are ready for release on all major streaming platforms.
+                  Alternate mix versions are included if you require them.
                 </Typography>
               </Container>
             </Box>
           </Grid>
         </Grid>
-        <Container maxWidth="xs" sx={{ mt: { xs: "3vh", sm: "5vh" } }}>
-          <Typography variant="body1" align="center">
-            • Alternate mixes such as instrumental, acapella, etc are available
-            for both mixing and mastering
-          </Typography>
-          <Typography variant="body1" align="center" mt={"3vh"}>
-            • Stem mastering is also available
-          </Typography>
-        </Container>
+        <Grid item xs={12} sm={6} mt={"5vh"}>
+          <Box textAlign="center">
+            <Typography variant="body1" align="center">
+              • Alternate mixes such as instrumental, acapella, etc are
+              available for both mixing and mastering
+            </Typography>
+            <Typography variant="body1" align="center" mt={"3vh"}>
+              • Stem mastering is also available
+            </Typography>
+          </Box>
+        </Grid>
       </Container>
     </Box>
   );
