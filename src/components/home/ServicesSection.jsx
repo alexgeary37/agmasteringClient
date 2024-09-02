@@ -64,7 +64,7 @@ export default function ServicesSection() {
                 <Typography variant="body1" align="center" sx={{ mt: "3vh" }}>
                   I transform your final mixes into loud masters with character
                   that are ready for release on all major streaming platforms.
-                  Alternate mix versions are included if you require them.
+                  Stem mastering is also available.
                 </Typography>
               </Container>
             </Box>
@@ -75,9 +75,6 @@ export default function ServicesSection() {
             <Typography variant="body1" align="center">
               • Alternate mixes such as instrumental, acapella, etc are
               available for both mixing and mastering
-            </Typography>
-            <Typography variant="body1" align="center" mt={"3vh"}>
-              • Stem mastering is also available
             </Typography>
           </Box>
         </Grid>
