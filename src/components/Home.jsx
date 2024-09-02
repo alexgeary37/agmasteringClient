@@ -86,8 +86,8 @@ export default function Home() {
           Hi, I'm Alex Geary!
         </Typography>
         <Typography variant="h6" align="center" paddingBlockEnd={2}>
-          I help rising artists get modern, professional sounding mixes ready
-          for release.
+          I have a passion for helping rising artists achieve modern,
+          professional-sounding mixes that are ready for release.
         </Typography>
         <Typography variant="h6" align="center">
           Get in touch to see what I can do for you &#128071;

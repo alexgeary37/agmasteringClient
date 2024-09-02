@@ -38,9 +38,10 @@ export default function ServicesSection() {
               </Typography>
               <Container>
                 <Typography variant="body1" align="center" sx={{ mt: "3vh" }}>
-                  I take the raw tracks you recorded at any professional studio
-                  or home studio, and turn them into a professional, polished
-                  recording.
+                  I take your raw tracks recorded at either a professional or
+                  home studio, and bring them together to give your music
+                  clarity, energy and a balanced sound that translates well
+                  across various speaker systems and listening environments.
                 </Typography>
               </Container>
             </Box>
