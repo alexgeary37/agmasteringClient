@@ -49,7 +49,7 @@ export default function Footer() {
           {new Date().getFullYear()}
         </Typography>
         <Typography variant="body2" color="text.secondary" mb={2}>
-          alexgeary37@gmail.com
+          Email: alexgeary37@gmail.com
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Link
