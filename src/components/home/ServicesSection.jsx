@@ -62,9 +62,10 @@ export default function ServicesSection() {
               </Typography>
               <Container>
                 <Typography variant="body1" align="center" sx={{ mt: "3vh" }}>
-                  I transform your final mixes into loud masters with character
-                  that are ready for release on all major streaming platforms.
-                  Stem mastering is also available.
+                  I transform your final mixes into loud, characterful stereo
+                  masters, ready for release on all major streaming platforms.
+                  Stem mastering is also available for projects that could
+                  benefit from additional polish.
                 </Typography>
               </Container>
             </Box>

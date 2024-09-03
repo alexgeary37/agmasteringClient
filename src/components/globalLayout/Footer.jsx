@@ -41,12 +41,15 @@ export default function Footer() {
           textAlign: "center",
         }}
       >
-        <Typography variant="body2" color="text.secondary" mb={2}>
+        <Typography variant="body2" color="text.secondary" mb={1}>
           {"Copyright © "}
           <Link color="inherit" href="/">
             AG Mastering
           </Link>{" "}
           {new Date().getFullYear()}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" mb={2}>
+          alexgeary37@gmail.com
         </Typography>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Link
@@ -85,13 +88,18 @@ export default function Footer() {
         maxWidth="md"
         sx={{ display: "flex", justifyContent: "space-between" }}
       >
-        <Typography variant="body2" color="text.secondary" align="center">
-          {"Copyright © "}
-          <Link color="inherit" href="/">
-            AG Mastering
-          </Link>{" "}
-          {new Date().getFullYear()}
-        </Typography>
+        <Box>
+          <Typography variant="body2" color="text.secondary" align="center">
+            {"Copyright © "}
+            <Link color="inherit" href="/">
+              AG Mastering
+            </Link>{" "}
+            {new Date().getFullYear()}
+            <Typography variant="body2" color="text.secondary" align="center">
+              Email: alexgeary37@gmail.com
+            </Typography>
+          </Typography>
+        </Box>
         <Box>
           <Link
             href="https://instagram.com/alexgearymastering"
