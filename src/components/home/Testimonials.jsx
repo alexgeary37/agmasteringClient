@@ -25,6 +25,14 @@ const userTestimonials = [
     testimonial:
       "That's great thanks Alex - love the mix! A big thanks to Alex Geary for his help with mixing/mastering.",
   },
+  {
+    name: "Arn Georj",
+    testimonial: "Testimonial",
+  },
+  {
+    name: "George Murrell",
+    testimonial: "Testimonial",
+  },
 ];
 
 export default function Testimonials() {
