@@ -55,7 +55,7 @@ export default function Home() {
         fontSize={"2rem"}
         letterSpacing={isMobile ? "0.1rem" : "0.3rem"}
       >
-        AG MASTERING
+        ALEX GEARY MASTERING
       </Typography>
       <Typography
         variant={isMobile ? "h6" : "h5"}
