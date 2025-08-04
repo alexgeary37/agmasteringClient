@@ -25,14 +25,16 @@ const userTestimonials = [
     testimonial:
       "That's great thanks Alex - love the mix! A big thanks to Alex Geary for his help with mixing/mastering.",
   },
-  // {
-  //   name: "Arn Georj",
-  //   testimonial: "Testimonial",
-  // },
-  // {
-  //   name: "George Murrell",
-  //   testimonial: "Testimonial",
-  // },
+  {
+    name: "Arn Georj",
+    testimonial:
+      "Alex did a great job at mastering my song, it ended up sounding so professional, and he did it in such a small amount of time, definitely counting on him for future projects.",
+  },
+  {
+    name: "George Murrell",
+    testimonial:
+      "Was great working with Alex. He brought a high degree of intention to the songs and seemed to understand at a deep level what we were trying to achieve on this project. Even though we never met in person he brought a flexibility and adaptability which bred a feeling of familiarity and trust. Wouldn't hesitate to recommend.",
+  },
 ];
 
 export default function Testimonials() {
