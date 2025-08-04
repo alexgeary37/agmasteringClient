@@ -14,16 +14,15 @@ const userTestimonials = [
     testimonial:
       "Maaan, they sound fantastic! Thanks so much 🙏🙏 We really like it! sounds full and vibrant, nice work, thanks!",
   },
-
+  {
+    name: "George Murrell",
+    testimonial:
+      "Was great working with Alex. He brought a high degree of intention to the songs and seemed to understand at a deep level what we were trying to achieve on this project. Even though we never met in person he brought a flexibility and adaptability which bred a feeling of familiarity and trust. Wouldn't hesitate to recommend.",
+  },
   {
     name: "Michael Williams",
     testimonial:
       "Thanks so much for this. You have done an excellent job!!!! Really sensitive and a beautiful sound. Very happy with this. Keen to put this on my website.",
-  },
-  {
-    name: "Kris Baines",
-    testimonial:
-      "That's great thanks Alex - love the mix! A big thanks to Alex Geary for his help with mixing/mastering.",
   },
   {
     name: "Arn Georj",
@@ -31,9 +30,9 @@ const userTestimonials = [
       "Alex did a great job at mastering my song, it ended up sounding so professional, and he did it in such a small amount of time, definitely counting on him for future projects.",
   },
   {
-    name: "George Murrell",
+    name: "Kris Baines",
     testimonial:
-      "Was great working with Alex. He brought a high degree of intention to the songs and seemed to understand at a deep level what we were trying to achieve on this project. Even though we never met in person he brought a flexibility and adaptability which bred a feeling of familiarity and trust. Wouldn't hesitate to recommend.",
+      "That's great thanks Alex - love the mix! A big thanks to Alex Geary for his help with mixing/mastering.",
   },
 ];
 

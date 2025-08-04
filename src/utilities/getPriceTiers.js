@@ -8,7 +8,7 @@ export const getPriceTiers = () => {
       title: "Mixing",
       // price: MIX_PRICE,
       description:
-        "I take raw the tracks you recorded at any professional studio or home studio, and turn them into a professional, polished recording.",
+        "I take your raw tracks recorded at either a professional or home studio, and bring them together to give your music clarity, energy and a balanced sound that translates well across all platforms and playback systems.",
       buttonText: "START MIXING",
       buttonVariant: "contained",
     },
@@ -16,7 +16,7 @@ export const getPriceTiers = () => {
       title: "Mastering",
       // price: MASTER_PRICE,
       description:
-        "I transform your final mixes into loud, punchy masters that translate across all platforms and playback systems.",
+        "I transform your final mixes into loud, characterful stereo masters, ready for release on all major streaming platforms. Stem mastering is also available for projects that could benefit from additional polish.",
       buttonText: "START MASTERING",
       buttonVariant: "contained",
     },
