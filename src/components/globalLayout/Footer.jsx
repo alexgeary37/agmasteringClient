@@ -44,7 +44,7 @@ export default function Footer() {
         <Typography variant="body2" color="text.secondary" mb={1}>
           {"Copyright © "}
           <Link color="inherit" href="/">
-            AG Mastering
+            Alex Geary Mastering
           </Link>{" "}
           {new Date().getFullYear()}
         </Typography>
@@ -92,7 +92,7 @@ export default function Footer() {
           <Typography variant="body2" color="text.secondary" align="center">
             {"Copyright © "}
             <Link color="inherit" href="/">
-              AG Mastering
+              Alex Geary Mastering
             </Link>{" "}
             {new Date().getFullYear()}
             <Typography variant="body2" color="text.secondary" align="center">
