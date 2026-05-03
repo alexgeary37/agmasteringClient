@@ -5,7 +5,7 @@ import profilePic from "../images/profile2.jpeg";
 // import AudioPlayer from "./home/AudioPlayer";
 import Testimonials from "./home/Testimonials";
 import { useEffect, useRef, useState } from "react";
-import ServicesSection from "./home/ServicesSection";
+// import ServicesSection from "./home/ServicesSection";
 
 export default function Home() {
   const [isMobile, setIsMobile] = useState(false);
@@ -74,7 +74,7 @@ export default function Home() {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      paddingBlock={"8vh"}
+      paddingBlock={"12vh"}
     >
       <Avatar
         alt="Alex Geary"
@@ -86,8 +86,9 @@ export default function Home() {
           Hi, I'm Alex Geary!
         </Typography>
         <Typography variant="h6" align="center" paddingBlockEnd={2}>
-          I have a passion for helping rising artists achieve modern,
-          professional-sounding music that is ready for release.
+          I'm a mixing and mastering engineer and work with Indi artists to help
+          them get their music sounding modern, professional and ready for
+          release.
         </Typography>
         <Typography variant="h6" align="center">
           Get in touch to see what I can do for you &#128071;
@@ -110,35 +111,20 @@ export default function Home() {
     </Box>
   );
 
-
-//   const instagram = (
-//   <div
-//     dangerouslySetInnerHTML={{
-//       __html: `
-// <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DW8FjdEE0ps/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-//   <div style="padding:16px;">
-//     <a href="https://www.instagram.com/reel/DW8FjdEE0ps/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank">
-//       <!-- ... omitting long SVG/image placeholder HTML ... -->
-//     </a>
-//     <p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
-//       <a href="https://www.instagram.com/reel/DW8FjdEE0ps/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Alex Geary | Mixing &amp; Mastering (@alexgearymastering)</a>
-//     </p>
-//   </div>
-// </blockquote>
-// <script async src="https://www.instagram.com/embed.js"></script>
-//       `,
-//     }}
-//   />
-// );
-
   return (
     <div>
       {header}
       {bio}
       <Divider />
-      <ServicesSection />
-      <Divider />
       <Testimonials />
+      <script src="https://elfsightcdn.com/platform.js" async></script>
+      <div
+        class="elfsight-app-4ed656f6-7a8e-40e0-9eb5-c32799edac8f"
+        data-elfsight-app-lazy
+      ></div>
+
+      <Divider />
+
       <Box
         ref={bottomButtonRef}
         textAlign={"center"}
